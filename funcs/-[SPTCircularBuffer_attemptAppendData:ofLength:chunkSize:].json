@@ -1,0 +1,5899 @@
+[
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x28", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x2510", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25390.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25390.333333333332
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x2510", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25390.666666666668
+   }
+  ], 
+  "length": 1, 
+  "addr": "0x632e"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x28", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25391.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x632f"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x2510", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25394.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25394.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x2510", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25395.333333333332
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x6332"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xb0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x2510", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25396.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25396.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x2510", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25397.333333333332
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x6334"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x2510", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25398.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25398.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x2510", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25399.333333333332
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x6336"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x2510", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25400.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25400.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x2510", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25401.333333333332
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x6338"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x2510", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25402.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25402.333333333332
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x2510", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25402.666666666668
+   }
+  ], 
+  "length": 1, 
+  "addr": "0x633a"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x2510", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25403.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25403.333333333332
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x2510", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25403.666666666668
+   }
+  ], 
+  "length": 1, 
+  "addr": "0x633b"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x80", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xb8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25404.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x633c"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25407.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x633f"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xb0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25410.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6342"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25413.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x634b", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25415.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x6c3a0", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "CALLIND", 
+    "addr": 25417.0
+   }
+  ], 
+  "length": 6, 
+  "addr": "0x6345"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25419.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x634b"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x38", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25422.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x634e"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25425.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x6356", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25426.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x6c3d8", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "CALL", 
+    "addr": 25428.333333333332
+   }
+  ], 
+  "length": 5, 
+  "addr": "0x6351"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x615f0", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x38", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25430.0
+   }
+  ], 
+  "length": 7, 
+  "addr": "0x6356"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x38", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25437.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25438.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25439.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x18", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25440.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x635d"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x61608", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25441.0
+   }
+  ], 
+  "length": 7, 
+  "addr": "0x6361"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25448.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6368"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25451.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25451.4
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25451.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_LESS", 
+    "addr": 25452.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25452.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SBORROW", 
+    "addr": 25453.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25453.4
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25453.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25454.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25454.6
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x636b"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25455.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25455.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xbbe0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_AND", 
+    "addr": 25456.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xbbe0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25456.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xbbe0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25457.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x636f"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x30", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25458.0
+   }
+  ], 
+  "length": 5, 
+  "addr": "0x6372"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x206", 
+      "space": "register", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x2110", 
+     "space": "unique", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "BOOL_NEGATE", 
+    "addr": 25463.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x2110", 
+      "space": "unique", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x5810", 
+     "space": "unique", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "BOOL_NEGATE", 
+    "addr": 25464.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x637b", 
+      "space": "ram", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x5810", 
+      "space": "unique", 
+      "size": "0x1"
+     }
+    ], 
+    "mnemonic": "CBRANCH", 
+    "addr": 25465.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x30", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25466.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x6377"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25467.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25467.5
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0xb8", 
+     "space": "register", 
+     "size": "0x4"
+    }, 
+    "mnemonic": "INT_XOR", 
+    "addr": 25468.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0xb8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ZEXT", 
+    "addr": 25468.5
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25469.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25469.5
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x637b"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x30", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_LESS", 
+    "addr": 25470.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x30", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SBORROW", 
+    "addr": 25470.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x30", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x59f0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25471.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x59f0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25471.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x59f0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25472.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x637e"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x644a", 
+      "space": "ram", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x200", 
+      "space": "register", 
+      "size": "0x1"
+     }
+    ], 
+    "mnemonic": "CBRANCH", 
+    "addr": 25473.0
+   }
+  ], 
+  "length": 6, 
+  "addr": "0x6381"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_LESS", 
+    "addr": 25479.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SBORROW", 
+    "addr": 25479.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x59f0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25480.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x59f0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25480.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x59f0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25481.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6387"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x200", 
+      "space": "register", 
+      "size": "0x1"
+     }, 
+     {
+      "offset": "0x206", 
+      "space": "register", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x2140", 
+     "space": "unique", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "BOOL_OR", 
+    "addr": 25482.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x2140", 
+      "space": "unique", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x2160", 
+     "space": "unique", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "BOOL_NEGATE", 
+    "addr": 25482.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x2160", 
+      "space": "unique", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x5810", 
+     "space": "unique", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "BOOL_NEGATE", 
+    "addr": 25483.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x638e", 
+      "space": "ram", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x5810", 
+      "space": "unique", 
+      "size": "0x1"
+     }
+    ], 
+    "mnemonic": "CBRANCH", 
+    "addr": 25484.4
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25485.2
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x638a"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25486.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25486.333333333332
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0x10", 
+     "space": "register", 
+     "size": "0x4"
+    }, 
+    "mnemonic": "INT_XOR", 
+    "addr": 25486.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0x10", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ZEXT", 
+    "addr": 25487.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25487.333333333332
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25487.666666666668
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x638e"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25488.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6390"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x30", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x6680", 
+     "space": "unique", 
+     "size": "0x10"
+    }, 
+    "mnemonic": "INT_ZEXT", 
+    "addr": 25491.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x6690", 
+     "space": "unique", 
+     "size": "0x10"
+    }, 
+    "mnemonic": "INT_ZEXT", 
+    "addr": 25491.333333333332
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x6690", 
+      "space": "unique", 
+      "size": "0x10"
+     }, 
+     {
+      "offset": "0x40", 
+      "space": "const", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0x66a0", 
+     "space": "unique", 
+     "size": "0x10"
+    }, 
+    "mnemonic": "INT_LEFT", 
+    "addr": 25491.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x66b0", 
+     "space": "unique", 
+     "size": "0x10"
+    }, 
+    "mnemonic": "INT_ZEXT", 
+    "addr": 25492.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x66a0", 
+      "space": "unique", 
+      "size": "0x10"
+     }, 
+     {
+      "offset": "0x66b0", 
+      "space": "unique", 
+      "size": "0x10"
+     }
+    ], 
+    "output": {
+     "offset": "0x66d0", 
+     "space": "unique", 
+     "size": "0x10"
+    }, 
+    "mnemonic": "INT_OR", 
+    "addr": 25492.333333333332
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x66d0", 
+      "space": "unique", 
+      "size": "0x10"
+     }, 
+     {
+      "offset": "0x6680", 
+      "space": "unique", 
+      "size": "0x10"
+     }
+    ], 
+    "output": {
+     "offset": "0x66f0", 
+     "space": "unique", 
+     "size": "0x10"
+    }, 
+    "mnemonic": "INT_DIV", 
+    "addr": 25492.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x66f0", 
+      "space": "unique", 
+      "size": "0x10"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0x0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "SUBPIECE", 
+    "addr": 25493.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x66d0", 
+      "space": "unique", 
+      "size": "0x10"
+     }, 
+     {
+      "offset": "0x6680", 
+      "space": "unique", 
+      "size": "0x10"
+     }
+    ], 
+    "output": {
+     "offset": "0x6720", 
+     "space": "unique", 
+     "size": "0x10"
+    }, 
+    "mnemonic": "INT_REM", 
+    "addr": 25493.333333333332
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x6720", 
+      "space": "unique", 
+      "size": "0x10"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x4"
+     }
+    ], 
+    "output": {
+     "offset": "0x10", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "SUBPIECE", 
+    "addr": 25493.666666666668
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6393"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xb8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25494.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6396"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_LESS", 
+    "addr": 25497.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SBORROW", 
+    "addr": 25497.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xb8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25498.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25498.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25499.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6399"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x615e8", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25500.0
+   }
+  ], 
+  "length": 7, 
+  "addr": "0x639c"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25507.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25507.4
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25507.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_CARRY", 
+    "addr": 25508.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25508.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SCARRY", 
+    "addr": 25509.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25509.4
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x18", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25509.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25510.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25510.6
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x63a3"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x61600", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x10", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25511.0
+   }
+  ], 
+  "length": 7, 
+  "addr": "0x63a7"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25518.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25519.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25520.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25521.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x63ae"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_LESS", 
+    "addr": 25522.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SBORROW", 
+    "addr": 25522.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x18", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25523.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25523.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25524.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63b2"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_LESS", 
+    "addr": 25525.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SBORROW", 
+    "addr": 25525.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x59f0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25526.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x59f0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25526.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x59f0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25527.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63b5"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x200", 
+      "space": "register", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x5810", 
+     "space": "unique", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "BOOL_NEGATE", 
+    "addr": 25528.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x63bc", 
+      "space": "ram", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x5810", 
+      "space": "unique", 
+      "size": "0x1"
+     }
+    ], 
+    "mnemonic": "CBRANCH", 
+    "addr": 25529.333333333332
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x18", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25530.666666666668
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x63b8"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25532.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25532.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xbbe0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_AND", 
+    "addr": 25533.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xbbe0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25533.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xbbe0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25534.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63bc"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x63e7", 
+      "space": "ram", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x206", 
+      "space": "register", 
+      "size": "0x1"
+     }
+    ], 
+    "mnemonic": "CBRANCH", 
+    "addr": 25535.0
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x63bf"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x38", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25537.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63c1"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xb0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x30", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25540.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63c4"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25543.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63c7"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x10", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25546.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63ca"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25549.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x63d2", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25550.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x6c308", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "CALL", 
+    "addr": 25552.333333333332
+   }
+  ], 
+  "length": 5, 
+  "addr": "0x63cd"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x10", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25554.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63d2"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x615f0", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x38", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25557.0
+   }
+  ], 
+  "length": 7, 
+  "addr": "0x63d5"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25564.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25565.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25566.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25567.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x63dc"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_CARRY", 
+    "addr": 25568.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SCARRY", 
+    "addr": 25568.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25569.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25569.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25570.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63e0"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25571.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25572.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25573.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25574.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x63e3"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_LESS", 
+    "addr": 25575.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SBORROW", 
+    "addr": 25575.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x59f0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25576.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x59f0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25576.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x59f0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25577.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63e7"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x6424", 
+      "space": "ram", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x206", 
+      "space": "register", 
+      "size": "0x1"
+     }
+    ], 
+    "mnemonic": "CBRANCH", 
+    "addr": 25578.0
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x63ea"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25580.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63ec"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_LESS", 
+    "addr": 25583.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SBORROW", 
+    "addr": 25583.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25584.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25584.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25585.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x63ef"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x615e8", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25586.0
+   }
+  ], 
+  "length": 7, 
+  "addr": "0x63f2"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25593.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25594.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25595.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x38", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25596.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x63f9"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25597.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25598.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x38", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25599.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25600.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x63fd"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xb0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_CARRY", 
+    "addr": 25601.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SCARRY", 
+    "addr": 25601.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xb0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25602.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25602.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xb0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25603.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6401"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xb0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x30", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25604.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6404"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x18", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25607.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6407"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x10", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25610.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x640a"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25613.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x6412", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25614.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x6c308", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "CALL", 
+    "addr": 25616.333333333332
+   }
+  ], 
+  "length": 5, 
+  "addr": "0x640d"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x18", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x10", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25618.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6412"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x615f0", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x38", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25621.0
+   }
+  ], 
+  "length": 7, 
+  "addr": "0x6415"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25628.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25628.4
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25628.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_CARRY", 
+    "addr": 25629.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25629.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SCARRY", 
+    "addr": 25630.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25630.4
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25630.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25631.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25631.6
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x641c"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25632.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25633.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25634.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25635.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x6420"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x615e8", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25636.0
+   }
+  ], 
+  "length": 7, 
+  "addr": "0x6424"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25643.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25644.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25645.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25646.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x642b"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x38", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25647.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25648.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25649.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25650.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x642f"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_CARRY", 
+    "addr": 25651.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SCARRY", 
+    "addr": 25651.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25652.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25652.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25653.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6433"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_LESS", 
+    "addr": 25654.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SBORROW", 
+    "addr": 25654.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa8", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x59f0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25655.2
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x59f0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25655.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x59f0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25656.4
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6436"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x206", 
+      "space": "register", 
+      "size": "0x1"
+     }
+    ], 
+    "output": {
+     "offset": "0x2110", 
+     "space": "unique", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "BOOL_NEGATE", 
+    "addr": 25657.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x643f", 
+      "space": "ram", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x2110", 
+      "space": "unique", 
+      "size": "0x1"
+     }
+    ], 
+    "mnemonic": "CBRANCH", 
+    "addr": 25658.0
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x6439"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x10", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25659.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25660.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25661.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25662.0
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x643b"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x61608", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25663.0
+   }
+  ], 
+  "length": 7, 
+  "addr": "0x643f"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x660", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_MULT", 
+    "addr": 25670.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x660", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x680", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25670.30769230769
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25670.615384615383
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_CARRY", 
+    "addr": 25670.923076923078
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25671.23076923077
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SCARRY", 
+    "addr": 25671.53846153846
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25671.846153846152
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25672.153846153848
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25672.46153846154
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25672.76923076923
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25673.076923076922
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x4"
+     }, 
+     {
+      "offset": "0x680", 
+      "space": "unique", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x1ff0", 
+     "space": "unique", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25673.384615384617
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1ff0", 
+      "space": "unique", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25673.69230769231
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x6446"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x38", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25674.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x644a"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25677.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x6452", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25678.666666666668
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x6c3e0", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "CALL", 
+    "addr": 25680.333333333332
+   }
+  ], 
+  "length": 5, 
+  "addr": "0x644d"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xa0", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x38", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25682.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x6452"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_SUB", 
+    "addr": 25685.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x645b", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "STORE", 
+    "addr": 25687.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x6c398", 
+      "space": "ram", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "CALLIND", 
+    "addr": 25689.0
+   }
+  ], 
+  "length": 6, 
+  "addr": "0x6455"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0xb8", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "COPY", 
+    "addr": 25691.0
+   }
+  ], 
+  "length": 3, 
+  "addr": "0x645b"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x200", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_CARRY", 
+    "addr": 25694.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20b", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SCARRY", 
+    "addr": 25694.8
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25695.6
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x207", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_SLESS", 
+    "addr": 25696.4
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x0", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x206", 
+     "space": "register", 
+     "size": "0x1"
+    }, 
+    "mnemonic": "INT_EQUAL", 
+    "addr": 25697.2
+   }
+  ], 
+  "length": 4, 
+  "addr": "0x645e"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x18", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25698.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25698.5
+   }
+  ], 
+  "length": 1, 
+  "addr": "0x6462"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25699.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25700.0
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x6463"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xa8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25701.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25702.0
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x6465"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xb0", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25703.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25704.0
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x6467"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0xb8", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25705.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25706.0
+   }
+  ], 
+  "length": 2, 
+  "addr": "0x6469"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x28", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25707.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25707.5
+   }
+  ], 
+  "length": 1, 
+  "addr": "0x646b"
+ }, 
+ {
+  "pcode": [
+   {
+    "inputs": [
+     {
+      "offset": "0x1b1", 
+      "space": "const", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x288", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "LOAD", 
+    "addr": 25708.0
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x20", 
+      "space": "register", 
+      "size": "0x8"
+     }, 
+     {
+      "offset": "0x8", 
+      "space": "const", 
+      "size": "0x8"
+     }
+    ], 
+    "output": {
+     "offset": "0x20", 
+     "space": "register", 
+     "size": "0x8"
+    }, 
+    "mnemonic": "INT_ADD", 
+    "addr": 25708.333333333332
+   }, 
+   {
+    "inputs": [
+     {
+      "offset": "0x288", 
+      "space": "register", 
+      "size": "0x8"
+     }
+    ], 
+    "mnemonic": "RETURN", 
+    "addr": 25708.666666666668
+   }
+  ], 
+  "length": 1, 
+  "addr": "0x646c"
+ }
+]
