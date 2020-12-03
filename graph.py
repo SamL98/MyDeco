@@ -5,7 +5,16 @@ from node import Node
 
 class Graph(object):
     def __init__(self, nodes):
-        self.nodes = nodes
+        start_nodes = []
+        other_nodes = []
+
+        for node in nodes:
+            if len(node.predecessors) == 0:
+                start_nodes.append(node)
+            else:
+                other_nodes.append(node)
+
+        self.nodes = start_nodes + other_nodes
 
     def idom(self, node):
         return self.doms[node.idx]
@@ -29,18 +38,15 @@ class Graph(object):
             changed = False
 
             for node in self.nodes[:-1][::-1]: # reverse postorder
-                new_idom = None
+                processed_preds = [p for p in node.predecessors if self.idom(p) is not None]
 
-                for pred in node.predecessors:
+                if len(processed_preds) == 0:
+                    continue
+
+                new_idom = processed_preds[0]
+
+                for pred in processed_preds:
                     pred_idom = self.idom(pred)
-    
-                    if pred_idom is None:
-                        continue
-
-                    if new_idom is None:
-                        new_idom = pred_idom
-                        continue
-
                     new_idom = self.shared_idom(pred, new_idom)                    
 
                 prev_idom = self.idom(node)
@@ -93,7 +99,7 @@ class Graph(object):
     def frontier(self, node):
         return self.frontiers[node.idx]
 
-    def dfs(self, node, visited, pre_fn=None, post_fn=None):
+    def dfs_(self, node, visited, pre_fn=None, post_fn=None):
         if pre_fn is not None:
             pre_fn(node)
 
@@ -101,10 +107,17 @@ class Graph(object):
 
         for succ in node.successors:
             if succ not in visited:
-                self.dfs(succ, visited, pre_fn=pre_fn, post_fn=post_fn)
+                self.dfs_(succ, visited, pre_fn=pre_fn, post_fn=post_fn)
 
         if post_fn is not None:
             post_fn(node)
+
+    def dfs(self, pre_fn=None, post_fn=None):
+        visited = set()
+
+        for node in self.nodes:
+            if node not in visited:
+                self.dfs_(node, visited, pre_fn=pre_fn, post_fn=post_fn)
 
     def sort_by_postorder(self):
         self.idx_ctr = 0
@@ -113,6 +126,6 @@ class Graph(object):
             node.set_idx(self.idx_ctr)
             self.idx_ctr += 1
 
-        self.dfs(self.nodes[0], set(), post_fn=set_idx)
+        self.dfs(post_fn=set_idx)
         self.nodes = sorted(self.nodes, key=lambda n: n.idx)
         self.start = self.nodes[-1]

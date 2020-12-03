@@ -28,11 +28,32 @@ class Varnode(object):
                    self.offset == other.offset and \
                    self.size == other.size
         else:
-            raise TypeError(type(other))
+            # We can't just raise an exception because we'll be comparing Varnodes
+            # to Blocks in partially-filled-in PhiOp's.
+            #raise TypeError(type(other))
+            return False
 
     @classmethod
     def unserialize(cls, j):
         return cls(j['space'], int(j['offset'], 16), int(j['size'], 16))
+
+    @classmethod
+    def fromstring(cls, s):
+        space = 'const'
+
+        if s.startswith('U'):
+            space = 'unique'
+            s = s.strip('U')
+        elif s.startswith('['):
+            space_idx = s.index(']')
+            space = s[1:space_idx]
+            s = s[space_idx+1:]
+
+        comps = s.split(':')
+        offset = int(comps[0], 16)
+        size = int(comps[1])
+
+        return cls(space, offset, size)
 
     def is_ram(self):
         return self.space == 'ram'
@@ -46,26 +67,24 @@ class Varnode(object):
     def dominates(self, other):
         return other.is_const()
 
-    @staticmethod
-    def convert_to_ssa(vnode, curr_pcop, create=False):
-        ssa_vnode = None
+    def convert_to_ssa(self, curr_pcop, assignment=False):
+        ssa_vnode = SSAVarnode.get_latest(self)
 
-        if not create and hash(vnode) in SSAVarnode.EXISTING_VARNODES:
-            ssa_vnode = SSAVarnode.EXISTING_VARNODES[hash(vnode)]
+        if not assignment and ssa_vnode is not None:
             ssa_vnode.add_use(curr_pcop)
-
         else:
-            ssa_vnode = SSAVarnode(vnode.space, vnode.offset, vnode.size, curr_pcop)
+            ssa_vnode = SSAVarnode(self.space, self.offset, self.size, curr_pcop)
 
         return ssa_vnode
 
 
 class SSAVarnode(Varnode):
     VERSION_LOOKUP = defaultdict(int)
+    EXISTING_VARNODES = defaultdict(list)
 
     def __init__(self, space, offset, size, defn):
         super().__init__(space, offset, size)
-        SSAVarnode.EXISTING_VARNODES[hash(self)] = self
+        SSAVarnode.EXISTING_VARNODES[hash(self)].append(self)
 
         self.version = SSAVarnode.get_version(self)
         self.defn = defn
@@ -83,4 +102,19 @@ class SSAVarnode(Varnode):
         ver = SSAVarnode.VERSION_LOOKUP[hash(vnode)]
         SSAVarnode.VERSION_LOOKUP[hash(vnode)] += 1
         return ver
+
+    @staticmethod
+    def get_latest(vnode):
+        if hash(vnode) in SSAVarnode.EXISTING_VARNODES:
+            vnodes = SSAVarnode.EXISTING_VARNODES[hash(vnode)]
+            if len(vnodes) > 0:
+                return vnodes[0]
+
+        return None
+
+    def unwind_version(self):
+        if hash(self) in SSAVarnode.EXISTING_VARNODES:
+            vnodes = SSAVarnode.EXISTING_VARNODES[hash(self)]
+            if len(vnodes) > 0:
+                vnodes.pop(-1)
 

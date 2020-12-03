@@ -1,4 +1,4 @@
-from varnode import *
+from varnode import Varnode, SSAVarnode
 
 
 class PcodeOp(object):
@@ -31,6 +31,25 @@ class PcodeOp(object):
 
         return cls(j['addr'], j['mnemonic'], inputs, output)
 
+    @classmethod
+    def fromstring(cls, s):
+        comps = s.split(': ')
+        addr = int(comps[0], 16)
+        s = comps[1]
+
+        comps = s.split(' = ')
+        output = None
+
+        if len(comps) == 2:
+            output = Varnode.fromstring(comps[0])
+            s = comps[1]
+
+        mnem_idx = s.index(' ')
+        mnemonic = s[:mnem_idx]
+        inputs = [Varnode.fromstring(comp) for comp in s[mnem_idx+1:].split(', ')]
+
+        return cls(addr, mnemonic, inputs, output)
+
     def returns(self):
         return 'RETURN' in self.mnemonic
 
@@ -41,10 +60,13 @@ class PcodeOp(object):
         return self.output is not None
 
     def is_reorderable(self):
-        return not (self.mnemonic in ['LOAD', 'STORE'])
+        return not (self.mnemonic in ['LOAD', 'STORE', 'MULTIEQUAL'])
 
     def is_identity(self):
         return self.mnemonic == 'COPY'
+
+    def is_phi(self):
+        return False
 
     def written_varnodes(self, ignore_uniq=False):
         vnodes = []
@@ -91,25 +113,48 @@ class PcodeOp(object):
             elif self.mnemonic == 'INT_XOR':
                 self.convert_to_zero()
 
+    def unwind_version(self):
+        if self.has_output():
+            self.output.unwind_version()
+
     def convert_to_ssa(self):
         inputs = [vnode.convert_to_ssa(self) for vnode in self.inputs]
         
-        if pcop.output is not None:
-            output = self.output.convert_to_ssa(self, create=True)
+        if self.has_output():
+            output = self.output.convert_to_ssa(self, assignment=True)
         
         self.inputs = inputs
         self.output = output
 
 
 class PhiOp(PcodeOp):
-    def fill_in_input(self, predecessor):
-        if predecessor in self.inputs:
-            self.replace_input(self.inputs.index(predecessor),
-                               predecessor.get_varnode(self.output))
+    def __repr__(self):
+        op_strs = []
+
+        for v in self.inputs:
+            if isinstance(v, Varnode):
+                op_strs.append(str(v))
+            else:
+                op_strs.append('%s_%s' % (self.output, v.name))
+
+        op_str = ', '.join(op_strs)
+        rhs = '%s %s' % (self.mnemonic, op_str)
+        return '%s = %s' % (self.output, rhs)
+
+    def is_phi(self):
+        return True
 
     @staticmethod
     def fromblock(blk, v):
-        return PcodeOp(blk.start, 
-                       'MULTIEQUAL', 
-                       [p for p in blk.predecessors],
-                       v)
+        return PhiOp(blk.start, 
+                     'MULTIEQUAL', 
+                     [p for p in blk.predecessors],
+                     v)
+
+    def replace_input(self, predecessor):
+        if predecessor in self.inputs:
+            super().replace_input(self.inputs.index(predecessor),
+                                  SSAVarnode.get_latest(self.output))
+
+    def convert_to_ssa(self):
+        self.output = self.output.convert_to_ssa(self, assignment=True)

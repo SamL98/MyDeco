@@ -15,8 +15,16 @@ class Block(Node):
         return '\n'.join([str(insn) for insn in self.insns])
 
     def __eq__(self, other):
-        return self.start == other.start and \
-               self.end == other.end
+        if type(other) == Block:
+            return self.start == other.start and \
+                   self.end == other.end
+        elif type(other) == Node:
+            return super().__eq__(other)
+        else:
+            raise NotImplementedError('Block.__eq__ %s' % type(other))
+
+    def __hash__(self):
+        return super().__hash__()
 
     def contains(self, addr, inclusive=True):
         is_within = addr <= self.end
@@ -42,8 +50,7 @@ class Block(Node):
     def insert_phis(self, varnodes):
         phis = [PhiOp.fromblock(self, v) for v in varnodes]
         self.insns[0].prepend_pcode(phis)
-
-    def get_varnode(self, varnode):
+        return len(phis)
 
     def simplify(self):
         new_insns = []
@@ -56,9 +63,17 @@ class Block(Node):
 
         self.insns = new_insns
 
+    def unwind_version(self):
+        for insn in self.insns:
+            insn.unwind_version()
+
     def convert_to_ssa(self):
         for insn in self.insns:
-            insn.convert_to_ssa(self)
+            insn.convert_to_ssa()
+
+        for succ in self.successors:
+            for phi in succ.insns[0].phis():
+                phi.replace_input(self)
 
 
 def get_block_containing(addr, blocks):

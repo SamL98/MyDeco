@@ -1,5 +1,7 @@
 import math
 
+from functools import reduce
+
 
 def addr_to_str(addr):
     return '%s.%02d' % (hex(int(math.floor(addr))), (addr - math.floor(addr)) * 100)
@@ -10,6 +12,9 @@ class Instruction(object):
         self.addr = addr
         self.length = length
         self.pcode = pcode
+
+    def copy(self):
+        return Instruction(self.addr, self.length, self.pcode)
 
     def __repr__(self):
         addr_str = '%s: ' % addr_to_str(self.addr)
@@ -42,6 +47,12 @@ class Instruction(object):
 
     def prepend_pcode(self, new_ops):
         self.pcode = new_ops + self.pcode
+
+    def phis(self):
+        return [pcop for pcop in self.pcode if pcop.is_phi()]
+
+    def num_phis(self):
+        return len(self.phis())
 
     def fallthrough(self):
         fallthru = None
@@ -89,24 +100,10 @@ class Instruction(object):
 
         self.pcode = new_pcode
 
-    def convert_to_ssa(self, block):
-        # For any of the inputs, we need to get the varnodes defined in each predecessor
-        # to the block containing `pcop`. If not all of the versions of said varnodes are the same,
-        # then we need to insert a MULTIEQUAL pcop.
-        new_pcode = []
-
+    def unwind_version(self):
         for pcop in self.pcode:
-            for inpt in pcop.inputs:
-                existing_vnodes = block.get_existing_vnodes(inpt)
+            pcop.unwind_version()
 
-                if len(existing_vnodes) > 1:
-                    ssa_inpt = inpt.convert_to_ssa()
-
-                    multieq_pcop = PcodeOp(pcop.addr, 'MULTIEQUAL', existing_vnodes, ssa_inpt)
-                    multieq_pcop.convert_to_ssa()
-                    new_pcode.append(multieq_pcop)
-
+    def convert_to_ssa(self):
+        for pcop in self.pcode:
             pcop.convert_to_ssa()
-            new_pcode.append(pcop)
-
-        self.pcode = new_pcode

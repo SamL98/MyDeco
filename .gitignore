@@ -1,3 +1,6 @@
 /__pycache__/
 */.*.swp
 */.*.swo
+.*.swp
+*.pyc
+/tests/__pycache__/
