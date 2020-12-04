@@ -40,6 +40,7 @@ class CFG(Graph):
         self.insert_phis()
 
         def convert_block_to_ssa(blk):
+            print(blk.name)
             blk.convert_to_ssa()
 
         def unwind_version(blk):

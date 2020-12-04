@@ -14,7 +14,7 @@ class Instruction(object):
         self.pcode = pcode
 
     def copy(self):
-        return Instruction(self.addr, self.length, self.pcode)
+        return Instruction(self.addr, self.length, [pcop.copy() for pcop in self.pcode])
 
     def __repr__(self):
         addr_str = '%s: ' % addr_to_str(self.addr)

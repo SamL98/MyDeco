@@ -108,7 +108,7 @@ class SSAVarnode(Varnode):
         if hash(vnode) in SSAVarnode.EXISTING_VARNODES:
             vnodes = SSAVarnode.EXISTING_VARNODES[hash(vnode)]
             if len(vnodes) > 0:
-                return vnodes[0]
+                return vnodes[-1]
 
         return None
 

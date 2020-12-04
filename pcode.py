@@ -12,6 +12,9 @@ class PcodeOp(object):
         self.inputs = inputs
         self.output = output
 
+    def copy(self):
+        return PcodeOp(self.addr, self.mnemonic, self.inputs, output=self.output)
+
     def __repr__(self):
         op_str = ', '.join([str(v) for v in self.inputs])
         rhs = '%s %s' % (self.mnemonic, op_str)
