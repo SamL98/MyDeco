@@ -47,7 +47,7 @@ class Graph(object):
 
                 for pred in processed_preds:
                     pred_idom = self.idom(pred)
-                    new_idom = self.shared_idom(pred, new_idom)                    
+                    new_idom = self.shared_idom(pred, new_idom) 
 
                 prev_idom = self.idom(node)
 
@@ -71,6 +71,8 @@ class Graph(object):
 
             prev_idom = node
             idom = self.idom(prev_idom)
+            if idom is None:
+                pdb.set_trace()
 
             while idom != prev_idom:
                 dt_idom = get_dt_node(idom)
@@ -129,3 +131,20 @@ class Graph(object):
         self.dfs(post_fn=set_idx)
         self.nodes = sorted(self.nodes, key=lambda n: n.idx)
         self.start = self.nodes[-1]
+
+    def copy(self, copy_fn):
+        new_nodes = {}
+
+        def copy_and_track(node):
+            new_node = copy_fn(node)
+            new_nodes[node.name] = new_node
+
+        def reconstruct_edges(node):
+            new_node = new_nodes[node.name]
+
+            for succ in node.successors:
+                new_succ = new_nodes[succ.name]
+                new_succ.add_predecessor(new_node)
+
+        self.dfs(pre_fn=copy_and_track, post_fn=reconstruct_edges)
+        return type(self)(list(new_nodes.values()))

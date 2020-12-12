@@ -47,17 +47,13 @@ complex2_cfg_blocks = [c2_block2, c2_block3, c2_block4, c2_block1, c2_block5]
 
 
 class TestSSA(unittest.TestCase):
-    '''
     def test_ssa_simple(self):
         cfg = CFG(simple_cfg_blocks)
         cfg.convert_to_ssa()
-    '''
 
-    '''
     def test_ssa_complex_1(self):
         cfg = CFG(complex1_cfg_blocks)
         cfg.convert_to_ssa()
-    '''
 
     def test_ssa_complex_2(self):
         cfg = CFG(complex2_cfg_blocks)

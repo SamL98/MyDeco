@@ -1,27 +1,16 @@
-import math
-
-from functools import reduce
+from pcode import PcodeOp, PcodeList
 
 
-def addr_to_str(addr):
-    return '%s.%02d' % (hex(int(math.floor(addr))), (addr - math.floor(addr)) * 100)
-
-
-class Instruction(object):
+class Instruction(PcodeList):
     def __init__(self, addr, length, pcode):
-        self.addr = addr
+        super().__init__(addr, pcode)
         self.length = length
-        self.pcode = pcode
 
     def copy(self):
         return Instruction(self.addr, self.length, [pcop.copy() for pcop in self.pcode])
 
-    def __repr__(self):
-        addr_str = '%s: ' % addr_to_str(self.addr)
-        return '\n'.join([addr_str + str(self.pcode[0])] + [(' ' * len(addr_str)) + str(pcop) for pcop in self.pcode[1:]])
-
     @staticmethod
-    def unserialize(j):
+    def fromjson(j):
         insn_addr = int(j['addr'], 16)
         insn_len = j['length']
 
@@ -29,7 +18,7 @@ class Instruction(object):
         pcode = []
 
         for pj in j['pcode']:
-            pcop = PcodeOp.unserialize(pj)
+            pcop = PcodeOp.fromjson(pj)
             pcode.append(pcop)
 
             if pcop.branches() or pcop.returns():
@@ -40,19 +29,6 @@ class Instruction(object):
             insns.append(Instruction(pcode[0].addr, insn_len * float(len(pcode)) / len(j['pcode']), pcode))
 
         return insns
-
-    def written_varnodes(self, ignore_uniq=False):
-        return reduce(lambda x,y: x+y, 
-                      [pcop.written_varnodes(ignore_uniq=ignore_uniq) for pcop in self.pcode])
-
-    def prepend_pcode(self, new_ops):
-        self.pcode = new_ops + self.pcode
-
-    def phis(self):
-        return [pcop for pcop in self.pcode if pcop.is_phi()]
-
-    def num_phis(self):
-        return len(self.phis())
 
     def fallthrough(self):
         fallthru = None
@@ -78,32 +54,9 @@ class Instruction(object):
     def branches(self):
         return self.pcode[-1].branches()
 
-    def ends_block(self):
+    def is_conditional(self):
+        return self.pcode[-1].is_conditional()
+
+    def terminates(self):
         return self.branches() or self.returns()
 
-    def simplify(self, block):
-        """
-        As a first pass, we go through all of the operations that are equivalent to the identity,
-        replace all uses of the rhs with the lhs, and remove said operation.
-        """
-        new_pcode = []
-
-        for pcop in self.pcode:
-            pcop.simplify()
-
-            if not (pcop.has_output() and pcop.is_identity()):
-                new_pcode.append(pcop)
-                continue
-
-            for use in pcop.output.uses:
-                use.pcop.inputs[use.idx] = pcop.inputs[0]
-
-        self.pcode = new_pcode
-
-    def unwind_version(self):
-        for pcop in self.pcode:
-            pcop.unwind_version()
-
-    def convert_to_ssa(self):
-        for pcop in self.pcode:
-            pcop.convert_to_ssa()

@@ -15,7 +15,7 @@ if __name__ == '__main__':
     with open(join('funcs', '%s.json' % func_name)) as f:
         func_j = json.load(f)
 
-    func = Function.unserialize(func_j)
-    #func.simplify()
-    #print(func)
+    func = Function.fromjson(func_j)
+    func.simplify()
+    print(func)
 

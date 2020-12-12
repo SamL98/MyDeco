@@ -1,3 +1,7 @@
+import math
+import pdb
+from functools import reduce
+
 from varnode import Varnode, SSAVarnode
 
 
@@ -25,12 +29,12 @@ class PcodeOp(object):
             return rhs
 
     @classmethod
-    def unserialize(cls, j):
-        inputs = [Varnode.unserialize(ij) for ij in j['inputs']]
+    def fromjson(cls, j):
+        inputs = [Varnode.fromjson(ij) for ij in j['inputs']]
         output = None
 
         if 'output' in j:
-            output = Varnode.unserialize(j['output'])
+            output = Varnode.fromjson(j['output'])
 
         return cls(j['addr'], j['mnemonic'], inputs, output)
 
@@ -59,6 +63,9 @@ class PcodeOp(object):
     def branches(self):
         return 'BRANCH' in self.mnemonic
 
+    def is_conditional(self):
+        return self.mnemonic == 'CBRANCH'
+
     def has_output(self):
         return self.output is not None
 
@@ -71,9 +78,11 @@ class PcodeOp(object):
     def is_phi(self):
         return False
 
-    def written_varnodes(self, ignore_uniq=False):
+    def written_varnodes(self, ignore_uniq=False, ignore_pc=True):
         vnodes = []
-        if self.output is not None and not (ignore_uniq and self.output.is_unique()):
+        if self.output is not None and \
+           not (ignore_uniq and self.output.is_unique()) and \
+           not (ignore_pc and self.output.is_pc()):
             vnodes.append(self.output)
         return vnodes
 
@@ -106,7 +115,7 @@ class PcodeOp(object):
                     self.convert_to_identity()
                 elif self.mnemonic in ['INT_AND', 'INT_MULT']:
                     self.convert_to_zero()
-            
+
             elif self.inputs[1] == 1 and self.mnemonic in ['INT_MULT', 'INT_DIV', 'INT_SDIV']:
                 self.convert_to_identity()
 
@@ -122,10 +131,11 @@ class PcodeOp(object):
 
     def convert_to_ssa(self):
         inputs = [vnode.convert_to_ssa(self) for vnode in self.inputs]
-        
+        output = None
+
         if self.has_output():
             output = self.output.convert_to_ssa(self, assignment=True)
-        
+
         self.inputs = inputs
         self.output = output
 
@@ -158,6 +168,66 @@ class PhiOp(PcodeOp):
         if predecessor in self.inputs:
             super().replace_input(self.inputs.index(predecessor),
                                   SSAVarnode.get_latest(self.output))
+            if SSAVarnode.get_latest(self.output) is None:
+                pdb.set_trace()
 
     def convert_to_ssa(self):
         self.output = self.output.convert_to_ssa(self, assignment=True)
+
+
+def addr_to_str(addr):
+    return '%s.%02d' % (hex(int(math.floor(addr))), (addr - math.floor(addr)) * 100)
+
+
+class PcodeList(object):
+    def __init__(self, addr, pcode):
+        self.addr = addr
+        self.pcode = pcode 
+
+    def __repr__(self):
+        addr_str = '%s: ' % addr_to_str(self.addr)
+        return '\n'.join([addr_str + str(self.pcode[0])] + [(' ' * len(addr_str)) + str(pcop) for pcop in self.pcode[1:]])
+
+    def __len__(self):
+        return len(self.pcode)
+
+    def prepend_pcode(self, new_ops):
+        self.pcode = new_ops + self.pcode
+
+    def phis(self):
+        return [pcop for pcop in self.pcode if pcop.is_phi()]
+
+    def num_phis(self):
+        return len(self.phis())
+
+    def written_varnodes(self, ignore_uniq=False, ignore_pc=True):
+        return reduce(lambda x,y: x+y, 
+                      [pcop.written_varnodes(ignore_uniq=ignore_uniq, ignore_pc=ignore_pc) for pcop in self.pcode])
+
+
+    def simplify(self):
+        """
+        As a first pass, we go through all of the operations that are equivalent to the identity,
+        replace all uses of the rhs with the lhs, and remove said operation.
+        """
+        new_pcode = []
+
+        for pcop in self.pcode:
+            pcop.simplify()
+
+            if not (pcop.has_output() and pcop.is_identity()):
+                new_pcode.append(pcop)
+                continue
+
+            for use in pcop.output.uses:
+                use.pcop.inputs[use.idx] = pcop.inputs[0]
+
+        self.pcode = new_pcode
+
+    def unwind_version(self):
+        for pcop in self.pcode:
+            pcop.unwind_version()
+
+    def convert_to_ssa(self):
+        for pcop in self.pcode:
+            pcop.convert_to_ssa()

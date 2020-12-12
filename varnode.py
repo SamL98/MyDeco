@@ -34,7 +34,7 @@ class Varnode(object):
             return False
 
     @classmethod
-    def unserialize(cls, j):
+    def fromjson(cls, j):
         return cls(j['space'], int(j['offset'], 16), int(j['size'], 16))
 
     @classmethod
@@ -61,11 +61,18 @@ class Varnode(object):
     def is_unique(self):
         return self.space == 'unique'
 
+    def is_register(self):
+        return self.space== 'register'
+
     def is_const(self):
         return self.space == 'const'
 
     def dominates(self, other):
         return other.is_const()
+
+    def is_pc(self):
+        # TODO: Make nice (and arch-inderpendent).
+        return self.is_register() and self.offset == 0x288
 
     def convert_to_ssa(self, curr_pcop, assignment=False):
         ssa_vnode = SSAVarnode.get_latest(self)
@@ -82,11 +89,13 @@ class SSAVarnode(Varnode):
     VERSION_LOOKUP = defaultdict(int)
     EXISTING_VARNODES = defaultdict(list)
 
-    def __init__(self, space, offset, size, defn):
+    def __init__(self, space, offset, size, defn, version=None):
         super().__init__(space, offset, size)
         SSAVarnode.EXISTING_VARNODES[hash(self)].append(self)
 
-        self.version = SSAVarnode.get_version(self)
+        if version is None:
+            self.version = SSAVarnode.get_version(self)
+
         self.defn = defn
         self.uses = []
 
@@ -97,6 +106,33 @@ class SSAVarnode(Varnode):
     def __repr__(self):
         return '%s (%d)' % (super().__repr__(), self.version)
 
+    @classmethod
+    def fromstring(cls, s):
+        space = 'const'
+
+        if s.startswith('U'):
+            space = 'unique'
+            s = s.strip('U')
+        elif s.startswith('['):
+            space_idx = s.index(']')
+            space = s[1:space_idx]
+            s = s[space_idx+1:]
+
+        comps = s.split(':')
+        offset = int(comps[0], 16)
+
+        size_str, ver_str = comps[1].split(' ')
+        size = int(size_str)
+        version = int(ver_str.strip('()'))
+
+        vnode = Varnode(space, offset, size)
+        latest = SSAVarnode.get_latest(vnode)
+
+        if latest is not None and latest.version == version:
+            return latest
+
+        return cls(space, offset, size, None, version=version)
+
     @staticmethod
     def get_version(vnode):
         ver = SSAVarnode.VERSION_LOOKUP[hash(vnode)]
@@ -105,12 +141,19 @@ class SSAVarnode(Varnode):
 
     @staticmethod
     def get_latest(vnode):
-        if hash(vnode) in SSAVarnode.EXISTING_VARNODES:
-            vnodes = SSAVarnode.EXISTING_VARNODES[hash(vnode)]
-            if len(vnodes) > 0:
-                return vnodes[-1]
+        ssa_vnode = None
 
-        return None
+        if hash(vnode) in SSAVarnode.EXISTING_VARNODES:
+            ssa_vnodes = SSAVarnode.EXISTING_VARNODES[hash(vnode)]
+            if len(ssa_vnodes) > 0:
+                ssa_vnode = ssa_vnodes[-1]
+
+        # TODO: Figure out if we should create the varnode in all cases.
+        #       We definitely want to sometimes if the varnode is a parameter for example.
+        if ssa_vnode is None:
+            ssa_vnode = SSAVarnode(vnode.space, vnode.offset, vnode.size, None)
+
+        return ssa_vnode
 
     def unwind_version(self):
         if hash(self) in SSAVarnode.EXISTING_VARNODES:
