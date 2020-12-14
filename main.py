@@ -1,6 +1,8 @@
+import sys
+sys.path.insert(0, 'deco')
+
 import json
 import math
-import sys
 
 from collections import defaultdict
 from functools import reduce

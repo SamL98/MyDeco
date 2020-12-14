@@ -97,7 +97,7 @@ class CFG(Graph):
     def insert_phis(self):
         phis_inserted = 0
         visited = set()
-        all_varnodes = reduce(lambda x,y: x+y,
+        all_varnodes = reduce(lambda x,y: x.union(y),
                               [blk.written_varnodes(ignore_uniq=True) for blk in self.blocks])
 
         for blk in self.blocks:
@@ -130,3 +130,22 @@ class CFG(Graph):
                            set(), 
                            pre_fn=convert_block_to_ssa, 
                            post_fn=unwind_version)
+
+    def simplify(self):
+        self.dfs_(self.entry,
+                  set(),
+                  post_fn=lambda blk: blk.simplify())
+
+        '''
+        new_blocks = []
+        new_cfg = self
+
+        for blk in self.blocks:
+            if len(blk) > 0:
+                new_blocks.append(blk)
+
+        if len(new_blocks) < len(self.blocks):
+            new_cfg = CFG(new_blocks)
+
+        return new_cfg
+        '''

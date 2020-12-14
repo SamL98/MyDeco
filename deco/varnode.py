@@ -99,8 +99,22 @@ class SSAVarnode(Varnode):
         self.defn = defn
         self.uses = []
 
-    def add_use(self, pcop):
-        use = Use(pcop, pcop.inputs.index(self))
+    def __eq__(self, other):
+        super_eq = super().__eq__(other)
+
+        if type(other) == SSAVarnode:
+            super_eq = super_eq and self.version == other.version
+
+        return super_eq
+
+    def __hash__(self):
+        return super().__hash__()
+
+    def add_use(self, pcop, idx=None):
+        if idx is None:
+            idx = pcop.inputs.index(self)
+
+        use = Use(pcop, idx)
         self.uses.append(use)
 
     def __repr__(self):

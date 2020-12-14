@@ -17,12 +17,5 @@ class Function(object):
         return Function(cfg)
 
     def simplify(self):
-        new_blocks = []
-
-        for blk in self.cfg.blocks:
-            blk.simplify()
-
-            if len(blk.pcode) > 0:
-                new_blocks.append(blk)
-
-        self.cfg.blocks = new_blocks
+        #self.cfg = self.cfg.simplify()
+        self.cfg.simplify()

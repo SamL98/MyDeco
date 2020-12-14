@@ -84,7 +84,7 @@ class PcodeOp(object):
            not (ignore_uniq and self.output.is_unique()) and \
            not (ignore_pc and self.output.is_pc()):
             vnodes.append(self.output)
-        return vnodes
+        return set(vnodes)
 
     def replace_input(self, idx, new_input):
         self.inputs[idx] = new_input
@@ -166,10 +166,11 @@ class PhiOp(PcodeOp):
 
     def replace_input(self, predecessor):
         if predecessor in self.inputs:
-            super().replace_input(self.inputs.index(predecessor),
-                                  SSAVarnode.get_latest(self.output))
-            if SSAVarnode.get_latest(self.output) is None:
-                pdb.set_trace()
+            idx = self.inputs.index(predecessor)
+            vnode = SSAVarnode.get_latest(self.output)
+
+            super().replace_input(idx, vnode)
+            vnode.add_use(self, idx=idx)
 
     def convert_to_ssa(self):
         self.output = self.output.convert_to_ssa(self, assignment=True)
@@ -201,7 +202,7 @@ class PcodeList(object):
         return len(self.phis())
 
     def written_varnodes(self, ignore_uniq=False, ignore_pc=True):
-        return reduce(lambda x,y: x+y, 
+        return reduce(lambda x,y: x.union(y), 
                       [pcop.written_varnodes(ignore_uniq=ignore_uniq, ignore_pc=ignore_pc) for pcop in self.pcode])
 
 
@@ -211,16 +212,22 @@ class PcodeList(object):
         replace all uses of the rhs with the lhs, and remove said operation.
         """
         new_pcode = []
+        #pdb.set_trace()
 
         for pcop in self.pcode:
             pcop.simplify()
 
-            if not (pcop.has_output() and pcop.is_identity()):
+            if not (pcop.has_output() and \
+                    pcop.is_identity() and \
+                    not any([type(use.pcop) == PhiOp for use in pcop.output.uses])):
                 new_pcode.append(pcop)
                 continue
 
+            #print('Removing %s at %s' % (pcop, addr_to_str(pcop.addr)))
             for use in pcop.output.uses:
+                #print(use.pcop, addr_to_str(use.pcop.addr), use.idx)
                 use.pcop.inputs[use.idx] = pcop.inputs[0]
+            #print('-------------------------------------')
 
         self.pcode = new_pcode
 
