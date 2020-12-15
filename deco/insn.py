@@ -38,25 +38,4 @@ class Instruction(PcodeList):
 
         return fallthru
 
-    def target(self):
-        targ = None
-
-        if self.branches():
-            target_vnode = self.pcode[-1].inputs[0]
-            if target_vnode.is_ram():
-                targ = target_vnode.offset
-
-        return targ
-
-    def returns(self):
-        return self.pcode[-1].returns()
-
-    def branches(self):
-        return self.pcode[-1].branches()
-
-    def is_conditional(self):
-        return self.pcode[-1].is_conditional()
-
-    def terminates(self):
-        return self.branches() or self.returns()
 

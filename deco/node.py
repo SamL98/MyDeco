@@ -39,3 +39,10 @@ class Node(object):
 
     def add_successor(self, successor):
         self.successors.append(successor)
+
+    def draw_vertex(self, g):
+        g.node(self.name, self.name)
+
+    def draw_edges(self, g):
+        for succ in self.successors: 
+            g.edge(self.name, succ.name)

@@ -1,9 +1,11 @@
 from collections import defaultdict
 from functools import reduce
+from graphviz import Graph as GVGraph
 
 from blocks import InstructionBlock, PcodeBlock
 from graph import Graph
 from insn import Instruction
+from pcode import addr_to_str
 
 
 def get_block_containing(addr, blocks):
@@ -136,7 +138,6 @@ class CFG(Graph):
                   set(),
                   post_fn=lambda blk: blk.simplify())
 
-        '''
         new_blocks = []
         new_cfg = self
 
@@ -144,8 +145,16 @@ class CFG(Graph):
             if len(blk) > 0:
                 new_blocks.append(blk)
 
+        # Here be bugs me thinks.
         if len(new_blocks) < len(self.blocks):
             new_cfg = CFG(new_blocks)
 
         return new_cfg
-        '''
+
+    def draw(self):
+        g = GVGraph(comment='CFG')
+        pre_fn = lambda blk: blk.draw_vertex(g) 
+        post_fn = lambda blk: blk.draw_edges(g) 
+        self.dfs(pre_fn=pre_fn,
+                 post_fn=post_fn)
+        g.render('cfg', view=True)

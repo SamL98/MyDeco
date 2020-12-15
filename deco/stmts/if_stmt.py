@@ -1,0 +1,2 @@
+class IfStmt(Stmt):
+    pass

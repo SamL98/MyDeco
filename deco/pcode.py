@@ -2,10 +2,11 @@ import math
 import pdb
 from functools import reduce
 
+from code_elem import CodeElement
 from varnode import Varnode, SSAVarnode
 
 
-class PcodeOp(object):
+class PcodeOp(CodeElement):
     def __init__(self, addr, mnemonic, inputs, output=None):
         self.addr = addr
         self.mnemonic = mnemonic
@@ -63,8 +64,18 @@ class PcodeOp(object):
     def branches(self):
         return 'BRANCH' in self.mnemonic
 
+    def terminates(self):
+        return self.branches() or self.returns()
+
     def is_conditional(self):
         return self.mnemonic == 'CBRANCH'
+
+    def is_indirect(self):
+        return self.mnemonic.endswith('IND')
+
+    def target(self):
+        if self.branches() and self.inputs[0].is_ram():
+            return self.inputs[0].offset
 
     def has_output(self):
         return self.output is not None
@@ -180,7 +191,7 @@ def addr_to_str(addr):
     return '%s.%02d' % (hex(int(math.floor(addr))), (addr - math.floor(addr)) * 100)
 
 
-class PcodeList(object):
+class PcodeList(CodeElement):
     def __init__(self, addr, pcode):
         self.addr = addr
         self.pcode = pcode 
@@ -205,31 +216,49 @@ class PcodeList(object):
         return reduce(lambda x,y: x.union(y), 
                       [pcop.written_varnodes(ignore_uniq=ignore_uniq, ignore_pc=ignore_pc) for pcop in self.pcode])
 
+    def returns(self):
+        return self.pcode[-1].returns()
+
+    def branches(self):
+        return self.pcode[-1].branches()
+
+    def terminates(self):
+        return self.pcode[-1].terminates()
+
+    def is_conditional(self):
+        return self.pcode[-1].is_conditional()
+
+    def is_indirect(self):
+        return self.pcode[-1].is_indirect()
+
+    def target(self):
+        return self.pcode[-1].target()
 
     def simplify(self):
         """
         As a first pass, we go through all of the operations that are equivalent to the identity,
         replace all uses of the rhs with the lhs, and remove said operation.
         """
-        new_pcode = []
-        #pdb.set_trace()
+        changed = True
 
-        for pcop in self.pcode:
-            pcop.simplify()
+        # Is this loop needed?
+        while changed:
+            new_pcode = []
 
-            if not (pcop.has_output() and \
-                    pcop.is_identity() and \
-                    not any([type(use.pcop) == PhiOp for use in pcop.output.uses])):
-                new_pcode.append(pcop)
-                continue
+            for pcop in self.pcode:
+                pcop.simplify()
 
-            #print('Removing %s at %s' % (pcop, addr_to_str(pcop.addr)))
-            for use in pcop.output.uses:
-                #print(use.pcop, addr_to_str(use.pcop.addr), use.idx)
-                use.pcop.inputs[use.idx] = pcop.inputs[0]
-            #print('-------------------------------------')
+                if not (pcop.has_output() and \
+                        pcop.is_identity() and \
+                        not any([type(use.pcop) == PhiOp for use in pcop.output.uses])):
+                    new_pcode.append(pcop)
+                    continue
 
-        self.pcode = new_pcode
+                for use in pcop.output.uses:
+                    use.pcop.inputs[use.idx] = pcop.inputs[0]
+
+            changed = len(self.pcode) != len(new_pcode)
+            self.pcode = new_pcode
 
     def unwind_version(self):
         for pcop in self.pcode:
