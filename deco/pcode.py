@@ -45,6 +45,8 @@ class PcodeOp(CodeElement):
 
         if pcop.is_call():
             pcop = CallOp.frompcop(pcop)
+        elif pcop.is_ret():
+            pcop = RetOp.frompcop(pcop)
 
         return pcop
 
@@ -69,6 +71,8 @@ class PcodeOp(CodeElement):
 
         if pcop.is_call():
             pcop = CallOp.frompcop(pcop)
+        elif pcop.is_ret():
+            pcop = RetOp.frompcop(pcop)
 
         return pcop
 
@@ -89,6 +93,9 @@ class PcodeOp(CodeElement):
 
     def is_call(self):
         return 'CALL' in self.mnemonic
+
+    def is_ret(self):
+        return self.mnemonic == 'RETURN'
 
     def target(self):
         if self.branches() and self.inputs[0].is_ram():
@@ -191,28 +198,28 @@ class PcodeOp(CodeElement):
         self.inputs = inputs
         self.output = output
 
-    """ Debug Methods """
-    def print_with_linkage(self):
-        for inpt in self.inputs:
-            inpt.print_with_uses()
 
-        print(self)
-        print()
-
-        if self.output is not None:
-            self.output.print_with_uses()
-
-class CallOp(PcodeOp):
+class ABIOp(PcodeOp):
+    """
+    Pcode operations that require ABI-dependent information (like CALL, RETURN, etc).
+    """
     def __init__(self, addr, mnemonic, inputs, output=None, killed_varnodes=[]):
         super().__init__(addr, mnemonic, inputs, output=output)
         self.killed_varnodes = killed_varnodes
 
-    @staticmethod
-    def frompcop(pcop):
+    @classmethod
+    def frompcop(cls, pcop):
         # TODO: Read cspecs to get varnodes killedbycall.
         killed_varnodes = [Varnode('register', off, 8) for off in [0x0, 0x10, 0x1200]]
-        return CallOp(pcop.addr, pcop.mnemonic, pcop.inputs, pcop.output, killed_varnodes)
+        return cls(pcop.addr, pcop.mnemonic, pcop.inputs, pcop.output, killed_varnodes)
 
+
+class CallOp(ABIOp):
+    """
+    Because CALL's return values and clobber other varnodes via convention,
+    we subclass PcodeOp to keep track of these clobbered (killed) varnodes and
+    act like all of them were written by the callee to make SSA valid.
+    """
     def written_varnodes(self, ignore_uniq=False, ignore_pc=True):
         vnodes = super().written_varnodes(ignore_uniq, ignore_pc)
         vnodes.update({ v for v in self.killed_varnodes \
@@ -227,10 +234,33 @@ class CallOp(PcodeOp):
 
     def convert_to_ssa(self):
         super().convert_to_ssa()
-        ssa_killed_varnodes = []
 
+        ssa_killed_varnodes = []
         for vnode in self.killed_varnodes:
             ssa_killed_varnodes.append(vnode.convert_to_ssa(self, assignment=True))
+
+        self.killed_varnodes = ssa_killed_varnodes
+
+
+class RetOp(ABIOp):
+    """
+    For the same reasons as we need to have hidden written varnodes for CALL's,
+    we need to have hidden read varnodes for RETURN's so that ops that write to return
+    varnode locations don't look like dead code.
+    """
+    def __init__(self, addr, mnemonic, inputs, output=None, killed_varnodes=[]):
+        super().__init__(addr, mnemonic, inputs, output, killed_varnodes)
+
+        # This is a bit hacky but since when we convert a varnode to SSA, we check `inputs`
+        # to add a use to the definition.
+        self.inputs += killed_varnodes
+
+    def convert_to_ssa(self):
+        super().convert_to_ssa()
+
+        ssa_killed_varnodes = []
+        for vnode in self.killed_varnodes:
+            ssa_killed_varnodes.append(vnode.convert_to_ssa(self, assignment=False))
 
         self.killed_varnodes = ssa_killed_varnodes
 

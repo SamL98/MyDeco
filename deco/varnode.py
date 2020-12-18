@@ -196,12 +196,3 @@ class SSAVarnode(Varnode):
             vnodes = SSAVarnode.EXISTING_VARNODES[hash(self)]
             if len(vnodes) > 0:
                 vnodes.pop(-1)
-
-    """ Debug Methods """
-    def print_with_uses(self):
-        print(self)
-
-        for use in self.uses:
-            print('Slot %d, %s' % (use.idx, use.pcop))
-
-        print()
