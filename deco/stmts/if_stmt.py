@@ -1,2 +1,0 @@
-class IfStmt(Stmt):
-    pass

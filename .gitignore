@@ -5,3 +5,4 @@
 *.pyc
 /tests/__pycache__/
 *.pdf
+/scratch/

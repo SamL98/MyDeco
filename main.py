@@ -18,6 +18,6 @@ if __name__ == '__main__':
         func_j = json.load(f)
 
     func = Function.fromjson(func_j)
-    #print(func)
-    func.draw()
+    print(func)
+    #func.draw()
 

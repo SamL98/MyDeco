@@ -62,7 +62,7 @@ class Varnode(object):
         return self.space == 'unique'
 
     def is_register(self):
-        return self.space== 'register'
+        return self.space == 'register'
 
     def is_const(self):
         return self.space == 'const'

@@ -1,16 +1,16 @@
 from functools import reduce
 
-from stmts.ast import AST
+from ast import AST
 from cfg import CFG
 
 
 class Function(object):
     def __init__(self, cfg):
-        self.cfg = cfg
-        self.cfg.convert_to_ssa()
-        self.cfg.simplify()
+        cfg.convert_to_ssa()
+        self.cfg = cfg.simplify()
 
         #self.ast = AST.fromcfg(self.cfg)
+        #print(self.ast)
 
     def __repr__(self):
         return str(self.cfg)

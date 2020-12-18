@@ -37,7 +37,12 @@ class PcodeOp(CodeElement):
         if 'output' in j:
             output = Varnode.fromjson(j['output'])
 
-        return cls(j['addr'], j['mnemonic'], inputs, output)
+        pcop = cls(j['addr'], j['mnemonic'], inputs, output)
+
+        if pcop.is_call():
+            pcop = CallOp.frompcop(pcop)
+
+        return pcop
 
     @classmethod
     def fromstring(cls, s):
@@ -56,7 +61,12 @@ class PcodeOp(CodeElement):
         mnemonic = s[:mnem_idx]
         inputs = [Varnode.fromstring(comp) for comp in s[mnem_idx+1:].split(', ')]
 
-        return cls(addr, mnemonic, inputs, output)
+        pcop = cls(addr, mnemonic, inputs, output)
+
+        if pcop.is_call():
+            pcop = CallOp.frompcop(pcop)
+
+        return pcop
 
     def returns(self):
         return 'RETURN' in self.mnemonic
@@ -72,6 +82,9 @@ class PcodeOp(CodeElement):
 
     def is_indirect(self):
         return self.mnemonic.endswith('IND')
+
+    def is_call(self):
+        return 'CALL' in self.mnemonic
 
     def target(self):
         if self.branches() and self.inputs[0].is_ram():
@@ -89,13 +102,18 @@ class PcodeOp(CodeElement):
     def is_phi(self):
         return False
 
+    def shd_incl_output(self, output, ignore_uniq=False, ignore_pc=True):
+        return not (ignore_uniq and output.is_unique()) and \
+               not (ignore_pc and output.is_pc())
+
     def written_varnodes(self, ignore_uniq=False, ignore_pc=True):
-        vnodes = []
+        vnodes = set()
+
         if self.output is not None and \
-           not (ignore_uniq and self.output.is_unique()) and \
-           not (ignore_pc and self.output.is_pc()):
-            vnodes.append(self.output)
-        return set(vnodes)
+           self.shd_incl_output(self.output, ignore_uniq, ignore_pc):
+            vnodes.add(self.output)
+
+        return vnodes
 
     def replace_input(self, idx, new_input):
         self.inputs[idx] = new_input
@@ -149,6 +167,39 @@ class PcodeOp(CodeElement):
 
         self.inputs = inputs
         self.output = output
+
+
+class CallOp(PcodeOp):
+    def __init__(self, addr, mnemonic, inputs, output=None, killed_varnodes=[]):
+        super().__init__(addr, mnemonic, inputs, output=output)
+        self.killed_varnodes = killed_varnodes
+
+    @staticmethod
+    def frompcop(pcop):
+        # TODO: Read cspecs to get varnodes killedbycall.
+        killed_varnodes = [Varnode('register', off, 8) for off in [0x0, 0x10, 0x1200]]
+        return CallOp(pcop.addr, pcop.mnemonic, pcop.inputs, pcop.output, killed_varnodes)
+
+    def written_varnodes(self, ignore_uniq=False, ignore_pc=True):
+        vnodes = super().written_varnodes(ignore_uniq, ignore_pc)
+        vnodes.update({ v for v in self.killed_varnodes \
+                        if self.shd_incl_output(v, ignore_uniq, ignore_pc) })
+        return vnodes
+
+    def unwind_version(self):
+        super().unwind_version()
+
+        for vnode in self.killed_varnodes:
+            vnode.unwind_version()
+
+    def convert_to_ssa(self):
+        super().convert_to_ssa()
+        ssa_killed_varnodes = []
+
+        for vnode in self.killed_varnodes:
+            ssa_killed_varnodes.append(vnode.convert_to_ssa(self, assignment=True))
+
+        self.killed_varnodes = ssa_killed_varnodes
 
 
 class PhiOp(PcodeOp):

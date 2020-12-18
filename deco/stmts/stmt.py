@@ -1,2 +1,0 @@
-class Stmt(object):
-    pass

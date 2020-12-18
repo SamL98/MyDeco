@@ -103,7 +103,7 @@ class CFG(Graph):
                               [blk.written_varnodes(ignore_uniq=True) for blk in self.blocks])
 
         for blk in self.blocks:
-            buff = self.frontier(blk)
+            buff = {b for b in self.frontier(blk)} # Don't consume from the frontier!
 
             while len(buff) > 0:
                 df_blk = buff.pop()
@@ -122,7 +122,6 @@ class CFG(Graph):
         self.insert_phis()
 
         def convert_block_to_ssa(blk):
-            print('Converting %s to SSA' % blk.name)
             blk.convert_to_ssa()
 
         def unwind_version(blk):
