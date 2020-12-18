@@ -6,8 +6,9 @@ from cfg import CFG
 
 class Function(object):
     def __init__(self, cfg):
-        cfg.convert_to_ssa()
-        self.cfg = cfg.simplify()
+        self.cfg = cfg
+        self.cfg.convert_to_ssa()
+        self.cfg.simplify()
 
         #self.ast = AST.fromcfg(self.cfg)
         #print(self.ast)

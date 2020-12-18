@@ -29,6 +29,10 @@ class PcodeOp(CodeElement):
         else:
             return rhs
 
+    def __eq__(self, other):
+        # TODO: Figure out if this needs to be more "sophisticated".
+        return self.addr == other.addr
+
     @classmethod
     def fromjson(cls, j):
         inputs = [Varnode.fromjson(ij) for ij in j['inputs']]
@@ -93,6 +97,9 @@ class PcodeOp(CodeElement):
     def has_output(self):
         return self.output is not None
 
+    def arity(self):
+        return len(self.inputs)
+
     def is_reorderable(self):
         return not (self.mnemonic in ['LOAD', 'STORE', 'MULTIEQUAL'])
 
@@ -115,13 +122,26 @@ class PcodeOp(CodeElement):
 
         return vnodes
 
+    def can_be_propagated(self):
+        return self.has_output() and self.is_identity() and \
+               (self.is_phi() or not any([use.pcop.is_phi() for use in self.output.uses]))
+
+    def is_dead(self):
+        return self.has_output() and len(self.output.uses) == 0
+
     def replace_input(self, idx, new_input):
         self.inputs[idx] = new_input
 
     def all_inputs_equal(self):
         return all([inpt == self.inputs[0] for inpt in self.inputs])
 
+    def relink_inputs(self, start_idx=1):
+        for inpt in self.inputs[start_idx:]:
+            inpt.remove_use(self)
+
     def convert_to_identity(self, lhs=None):
+        self.relink_inputs()
+
         if lhs is None:
             lhs = self.inputs[0]
 
@@ -129,9 +149,12 @@ class PcodeOp(CodeElement):
         self.inputs = [lhs]
 
     def convert_to_zero(self, lhs=None):
+        self.relink_inputs()
+
         if lhs is None:
             lhs = self.inputs[0]
 
+        # TODO: Do we need to deal with SSAVarnode's here? Probably
         self.convert_to_identity(Varnode('const', 0, lhs.size))
 
     def simplify(self):
@@ -168,6 +191,16 @@ class PcodeOp(CodeElement):
         self.inputs = inputs
         self.output = output
 
+    """ Debug Methods """
+    def print_with_linkage(self):
+        for inpt in self.inputs:
+            inpt.print_with_uses()
+
+        print(self)
+        print()
+
+        if self.output is not None:
+            self.output.print_with_uses()
 
 class CallOp(PcodeOp):
     def __init__(self, addr, mnemonic, inputs, output=None, killed_varnodes=[]):
@@ -287,29 +320,34 @@ class PcodeList(CodeElement):
 
     def simplify(self):
         """
-        As a first pass, we go through all of the operations that are equivalent to the identity,
-        replace all uses of the rhs with the lhs, and remove said operation.
+        Do some basic arithmetic simplification on the pcop's then
+        perform copy propagation on the result.
         """
         changed = True
 
-        # Is this loop needed?
-        while changed:
-            new_pcode = []
+        #print(addr_to_str(self.start))
+        #print(self)
+        new_pcode = []
 
-            for pcop in self.pcode:
-                pcop.simplify()
+        for pcop in self.pcode:
+            pcop.simplify()
 
-                if not (pcop.has_output() and \
-                        pcop.is_identity() and \
-                        not any([type(use.pcop) == PhiOp for use in pcop.output.uses])):
-                    new_pcode.append(pcop)
-                    continue
+            if not (pcop.can_be_propagated() or pcop.is_dead()):
+                new_pcode.append(pcop)
+                continue
 
-                for use in pcop.output.uses:
-                    use.pcop.inputs[use.idx] = pcop.inputs[0]
+            if pcop.is_dead():
+                pcop.relink_inputs(start_idx=0)
 
-            changed = len(self.pcode) != len(new_pcode)
-            self.pcode = new_pcode
+            for use in pcop.output.uses:
+                prop_vnode = pcop.inputs[0]
+                use.pcop.inputs[use.idx] = prop_vnode
+                prop_vnode.add_use(use.pcop, idx=use.idx)
+
+        changed = len(self.pcode) != len(new_pcode)
+        self.pcode = new_pcode
+
+        return changed
 
     def unwind_version(self):
         for pcop in self.pcode:

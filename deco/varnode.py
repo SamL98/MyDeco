@@ -117,6 +117,28 @@ class SSAVarnode(Varnode):
         use = Use(pcop, idx)
         self.uses.append(use)
 
+    def get_use_idx(self, pcop):
+        idx = -1
+
+        for i, use in enumerate(self.uses):
+            if use.pcop == pcop:
+                idx = i
+                break
+
+        return idx
+
+    def update_use(self, pcop):
+        idx = self.get_use_idx(pcop)
+
+        if idx >= 0:
+            self.uses[idx] = Use(pcop, pcop.inputs.index(self))
+
+    def remove_use(self, pcop):
+        idx = self.get_use_idx(pcop)
+
+        if idx >= 0:
+            del self.uses[idx]
+
     def __repr__(self):
         return '%s (%d)' % (super().__repr__(), self.version)
 
@@ -175,3 +197,11 @@ class SSAVarnode(Varnode):
             if len(vnodes) > 0:
                 vnodes.pop(-1)
 
+    """ Debug Methods """
+    def print_with_uses(self):
+        print(self)
+
+        for use in self.uses:
+            print('Slot %d, %s' % (use.idx, use.pcop))
+
+        print()

@@ -133,22 +133,17 @@ class CFG(Graph):
                            post_fn=unwind_version)
 
     def simplify(self):
-        self.dfs_(self.entry,
-                  set(),
-                  post_fn=lambda blk: blk.simplify())
+        # TODO: Handle case where blocks may become empty
+        self.changed = True
 
-        new_blocks = []
-        new_cfg = self
+        def simplify_block(blk):
+            self.changed |= blk.simplify()
 
-        for blk in self.blocks:
-            if len(blk) > 0:
-                new_blocks.append(blk)
-
-        # Here be bugs me thinks.
-        if len(new_blocks) < len(self.blocks):
-            new_cfg = CFG(new_blocks)
-
-        return new_cfg
+        while self.changed:
+            self.changed = False
+            self.dfs_(self.entry,
+                      set(),
+                      post_fn=simplify_block)
 
     def draw(self):
         g = GVGraph(comment='CFG')

@@ -23,13 +23,20 @@ class VarnodeExpr(Expr):
     def __init__(self, vnode):
         self.vnode = vnode
 
+    def __repr__(self):
+        return str(self.vnode)
+
 
 class PcodeExpr(Expr):
     def __init__(self, pcop):
         self.mnemonic = pcop.mnemonic
+        self.inputs = [Expr.fromvnode(v) for v in pcop.inputs]
+        self.output = None
+
+        if pcop.output is not None:
+            self.output = Expr.fromvnode(pcop.output)
 
 
 class UnaryExpr(PcodeExpr):
-    def __init__(self, pcop):
-        super().__init__(pcop)
-
+    def __repr__(self):
+        pass
