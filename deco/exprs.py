@@ -40,3 +40,15 @@ class PcodeExpr(Expr):
 class UnaryExpr(PcodeExpr):
     def __repr__(self):
         pass
+
+class BinaryExpr(PcodeExpr):
+    def __repr__(self):
+        pass
+
+class TernaryExpr(PcodeExpr):
+    def __repr__(self):
+        pass
+
+class NaryExpr(PcodeExpr):
+    def __repr__(self):
+        pass

@@ -162,7 +162,7 @@ class PcodeOp(CodeElement):
             lhs = self.inputs[0]
 
         # TODO: Do we need to deal with SSAVarnode's here? Probably
-        self.convert_to_identity(Varnode('const', 0, lhs.size))
+        self.convert_to_identity(SSAVarnode('const', 0, lhs.size, None, version=0))
 
     def simplify(self):
         if len(self.inputs) < 2:
@@ -371,8 +371,9 @@ class PcodeList(CodeElement):
 
             for use in pcop.output.uses:
                 prop_vnode = pcop.inputs[0]
-                use.pcop.inputs[use.idx] = prop_vnode
-                prop_vnode.add_use(use.pcop, idx=use.idx)
+                for idx in use.idxs:
+                    use.pcop.inputs[idx] = prop_vnode
+                prop_vnode.add_use(use.pcop, idxs=use.idxs)
 
         changed = len(self.pcode) != len(new_pcode)
         self.pcode = new_pcode

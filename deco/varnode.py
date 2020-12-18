@@ -1,6 +1,6 @@
 from collections import defaultdict, namedtuple
 
-Use = namedtuple('Use', ('pcop', 'idx'))
+Use = namedtuple('Use', ('pcop', 'idxs'))
 
 
 class Varnode(object):
@@ -95,6 +95,8 @@ class SSAVarnode(Varnode):
 
         if version is None:
             self.version = SSAVarnode.get_version(self)
+        else:
+            self.version = version
 
         self.defn = defn
         self.uses = []
@@ -110,11 +112,16 @@ class SSAVarnode(Varnode):
     def __hash__(self):
         return super().__hash__()
 
-    def add_use(self, pcop, idx=None):
-        if idx is None:
-            idx = pcop.inputs.index(self)
+    def get_input_idxs(self, pcop):
+        return [i for i, v in enumerate(pcop.inputs) if v == self]
 
-        use = Use(pcop, idx)
+    def add_use(self, pcop, idx=None, idxs=[]):
+        if len(idxs) == 0 and idx is None:
+            idxs = self.get_input_idxs(pcop)
+        elif idx is not None:
+            idxs = [idx]
+
+        use = Use(pcop, idxs)
         self.uses.append(use)
 
     def get_use_idx(self, pcop):
@@ -131,7 +138,7 @@ class SSAVarnode(Varnode):
         idx = self.get_use_idx(pcop)
 
         if idx >= 0:
-            self.uses[idx] = Use(pcop, pcop.inputs.index(self))
+            self.uses[idx] = Use(pcop, self.get_input_idxs(pcop))
 
     def remove_use(self, pcop):
         idx = self.get_use_idx(pcop)
