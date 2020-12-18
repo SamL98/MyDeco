@@ -1,7 +1,7 @@
 from functools import reduce
 
-from ast import AST
 from cfg import CFG
+from hlcfg import HLCFG
 
 
 class Function(object):
@@ -10,8 +10,8 @@ class Function(object):
         self.cfg.convert_to_ssa()
         self.cfg.simplify()
 
-        #self.ast = AST.fromcfg(self.cfg)
-        #print(self.ast)
+        self.ast = HLCFG.fromcfg(self.cfg)
+        print(self.ast)
 
     def __repr__(self):
         return str(self.cfg)

@@ -20,7 +20,7 @@ class IfStmt(Stmt):
         self.condition = Expr.fromvnode(predicate.block.pcode[-1].inputs[1])
 
         if invert:
-            self.condition = not self.condition
+            self.condition = self.condition.bool_not()
 
         self.predicate = predicate
         self.action = action

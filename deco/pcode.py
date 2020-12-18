@@ -97,6 +97,15 @@ class PcodeOp(CodeElement):
     def is_ret(self):
         return self.mnemonic == 'RETURN'
 
+    def is_load(self):
+        return self.mnemonic == 'LOAD'
+
+    def is_store(self):
+        return self.mnemonic == 'STORE'
+
+    def is_phi(self):
+        return self.mnemonic == 'MULTIEQUAL'
+
     def target(self):
         if self.branches() and self.inputs[0].is_ram():
             return self.inputs[0].offset
@@ -112,9 +121,6 @@ class PcodeOp(CodeElement):
 
     def is_identity(self):
         return self.mnemonic == 'COPY'
-
-    def is_phi(self):
-        return False
 
     def shd_incl_output(self, output, ignore_uniq=False, ignore_pc=True):
         return not (ignore_uniq and output.is_unique()) and \
@@ -278,9 +284,6 @@ class PhiOp(PcodeOp):
         op_str = ', '.join(op_strs)
         rhs = '%s %s' % (self.mnemonic, op_str)
         return '%s = %s' % (self.output, rhs)
-
-    def is_phi(self):
-        return True
 
     @staticmethod
     def fromblock(blk, v):

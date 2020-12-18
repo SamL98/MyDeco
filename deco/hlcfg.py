@@ -2,7 +2,11 @@ from graph import Graph
 from stmts import Stmt, IfStmt
 
 
-class AST(Graph):
+class HLCFG(Graph):
+    """
+    I initially wanted to call this class AST but pdb overwrote it since it's part of a
+    standard Python package. Therefore, here we are with High-Level CFG (HLCFG).
+    """
     def __init__(self, entry, stmts):
         super().__init__(stmts)
         self.entry = entry
@@ -56,5 +60,5 @@ class AST(Graph):
                 post_fn=label_block)
 
         entry = blk2stmt[cfg.entry]
-        return AST(entry, stmts)
+        return HLCFG(entry, stmts)
 
