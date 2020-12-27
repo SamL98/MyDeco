@@ -11,6 +11,9 @@ class Block(Node):
         self.start = start
         self.elems = elems
 
+    def __len__(self):
+        return len(self.elems)
+
     def fallthrough(self):
         if len(self.successors) == 0:
             return None
@@ -46,9 +49,6 @@ class InstructionBlock(Block):
 
         self.insns = insns
         self.end = end
-
-    def __len__(self):
-        return len(self.insns)
 
     def __repr__(self):
         addr_str = '%s: ' % addr_to_str(self.start)

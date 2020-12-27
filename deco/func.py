@@ -1,7 +1,7 @@
 from functools import reduce
 
 from cfg import CFG
-from hlcfg import HLCFG
+from stmt_list import StmtBlockList
 
 
 class Function(object):
@@ -10,7 +10,7 @@ class Function(object):
         self.cfg.convert_to_ssa()
         self.cfg.simplify()
 
-        self.ast = HLCFG.fromcfg(self.cfg)
+        self.ast = StmtBlockList.fromcfg(self.cfg)
         print(self.ast)
 
     def __repr__(self):

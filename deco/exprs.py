@@ -1,4 +1,5 @@
-import pdb
+from data_flow import DataFlowObj, ExprUse
+from variable import Variable
 
 MNEMONIC_TO_OPSTR = {
     'INT_ADD': '+',
@@ -22,15 +23,24 @@ MNEMONIC_TO_OPSTR = {
 }
 
 
-class Expr(object):
+class Expr(DataFlowObj):
     CACHE = {}
+
+    def use_type(self):
+        return ExprUse
 
     @staticmethod
     def fromvnode(vnode):
         if vnode in Expr.CACHE:
             return Expr.CACHE[vnode]
+        elif vnode in Variable.CACHE:
+            expr = Variable.CACHE[vnode]
+            Expr.CACHE[vnode] = expr
+            return expr
 
-        if vnode.version == 0 or vnode.defn is None:
+        if vnode.is_const():
+            return ConstExpr(vnode.offset)
+        elif vnode.version == 0 or vnode.defn is None:
             return VarnodeExpr(vnode)
 
         defn = vnode.defn
@@ -50,9 +60,28 @@ class Expr(object):
         return expr
 
 
+class ConstExpr(Expr):
+    def __init__(self, const):
+        super().__init__()
+        self.const = const
+
+    def __repr__(self):
+        return hex(self.const)
+
+
 class VarnodeExpr(Expr):
     def __init__(self, vnode):
+        super().__init__()
         self.vnode = vnode
+
+    def __repr__(self):
+        return str(self.vnode)
+
+
+class VariableExpr(Expr):
+    def __init__(self, var):
+        super().__init__()
+        self.var = var
 
     def __repr__(self):
         return str(self.vnode)
@@ -60,6 +89,7 @@ class VarnodeExpr(Expr):
 
 class CompoundExpr(Expr):
     def __init__(self, mnemonic, *inputs):
+        super().__init__()
         self.mnemonic = mnemonic
         self.inputs = inputs
         self.opstr = MNEMONIC_TO_OPSTR.get(mnemonic, mnemonic)

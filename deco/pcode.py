@@ -106,6 +106,12 @@ class PcodeOp(CodeElement):
     def is_phi(self):
         return self.mnemonic == 'MULTIEQUAL'
 
+    def is_identity(self):
+        return self.mnemonic == 'COPY'
+
+    def is_assign(self):
+        return self.is_store() or self.is_identity()
+
     def target(self):
         if self.branches() and self.inputs[0].is_ram():
             return self.inputs[0].offset
@@ -118,9 +124,6 @@ class PcodeOp(CodeElement):
 
     def is_reorderable(self):
         return not (self.mnemonic in ['LOAD', 'STORE', 'MULTIEQUAL'])
-
-    def is_identity(self):
-        return self.mnemonic == 'COPY'
 
     def shd_incl_output(self, output, ignore_uniq=False, ignore_pc=True):
         return not (ignore_uniq and output.is_unique()) and \

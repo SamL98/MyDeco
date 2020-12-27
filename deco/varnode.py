@@ -1,6 +1,6 @@
-from collections import defaultdict, namedtuple
+from collections import defaultdict
 
-Use = namedtuple('Use', ('pcop', 'idxs'))
+from data_flow import DataFlowObj, VarnodeUse
 
 
 class Varnode(object):
@@ -32,6 +32,10 @@ class Varnode(object):
             # to Blocks in partially-filled-in PhiOp's.
             #raise TypeError(type(other))
             return False
+
+    @staticmethod
+    def reg(offset, size):
+        return Varnode('register', offset, size)
 
     @classmethod
     def fromjson(cls, j):
@@ -85,21 +89,19 @@ class Varnode(object):
         return ssa_vnode
 
 
-class SSAVarnode(Varnode):
+class SSAVarnode(Varnode, DataFlowObj):
     VERSION_LOOKUP = defaultdict(int)
     EXISTING_VARNODES = defaultdict(list)
 
     def __init__(self, space, offset, size, defn, version=None):
-        super().__init__(space, offset, size)
+        Varnode.__init__(self, space, offset, size)
+        DataFlowObj.__init__(self, defn)
         SSAVarnode.EXISTING_VARNODES[hash(self)].append(self)
 
         if version is None:
             self.version = SSAVarnode.get_version(self)
         else:
             self.version = version
-
-        self.defn = defn
-        self.uses = []
 
     def __eq__(self, other):
         super_eq = super().__eq__(other)
@@ -112,42 +114,11 @@ class SSAVarnode(Varnode):
     def __hash__(self):
         return super().__hash__()
 
-    def get_input_idxs(self, pcop):
-        return [i for i, v in enumerate(pcop.inputs) if v == self]
-
-    def add_use(self, pcop, idx=None, idxs=[]):
-        if len(idxs) == 0 and idx is None:
-            idxs = self.get_input_idxs(pcop)
-        elif idx is not None:
-            idxs = [idx]
-
-        use = Use(pcop, idxs)
-        self.uses.append(use)
-
-    def get_use_idx(self, pcop):
-        idx = -1
-
-        for i, use in enumerate(self.uses):
-            if use.pcop == pcop:
-                idx = i
-                break
-
-        return idx
-
-    def update_use(self, pcop):
-        idx = self.get_use_idx(pcop)
-
-        if idx >= 0:
-            self.uses[idx] = Use(pcop, self.get_input_idxs(pcop))
-
-    def remove_use(self, pcop):
-        idx = self.get_use_idx(pcop)
-
-        if idx >= 0:
-            del self.uses[idx]
-
     def __repr__(self):
         return '%s (%d)' % (super().__repr__(), self.version)
+
+    def use_type(self):
+        return VarnodeUse
 
     @classmethod
     def fromstring(cls, s):
