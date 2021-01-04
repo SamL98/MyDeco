@@ -5,7 +5,7 @@ from graphviz import Graph as GVGraph
 from blocks import InstructionBlock, PcodeBlock
 from graph import Graph
 from insn import Instruction
-from pcode import addr_to_str
+from utils import addr_to_str
 
 
 def get_block_containing(addr, blocks):

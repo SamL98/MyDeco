@@ -1,9 +1,12 @@
-import math
 import pdb
 from functools import reduce
 
 from code_elem import CodeElement
+from exprs import Expr, CompoundExpr
+from stmts import *
 from varnode import Varnode, SSAVarnode
+from variable import Variable
+from utils import addr_to_str
 
 
 class PcodeOp(CodeElement):
@@ -110,7 +113,7 @@ class PcodeOp(CodeElement):
         return self.mnemonic == 'COPY'
 
     def is_assign(self):
-        return self.is_store() or self.is_identity()
+        return self.is_store()# or self.is_identity()
 
     def target(self):
         if self.branches() and self.inputs[0].is_ram():
@@ -206,6 +209,59 @@ class PcodeOp(CodeElement):
 
         self.inputs = inputs
         self.output = output
+
+    def _generate_expr(self, vnode):
+        stmts = []
+        expr = Expr.fromvnode(vnode)
+
+        pdb.set_trace()
+        if expr.is_compound():
+            for i, inpt in enumerate(expr.inputs):
+                # TODO: Handle multiple inputs that are the same Expr (`idxs` in add_use).
+                inpt.add_use(self, idx=i, addr=self.addr)
+                #print(inpt, inpt.is_compound(), len(inpt.uses))
+
+                if inpt.is_compound() and len(inpt.uses) >= 2:
+                    var = Variable.fromexpr(inpt)
+
+                    # Just like with copy propagation, we want to update all the uses of `expr` with `var`.
+                    for use in inpt.uses:
+                        use.expr.replace_input(use.idx, var)
+
+                    # The address for this assign should be before the *first* use of the subexpression.
+                    insert_addr = min([use.addr for use in inpt.uses]) - 1 # boo :(
+                    assign = AssignStmt(insert_addr, var, inpt)
+
+                    stmts.append(assign)
+
+        return stmts, expr
+
+    def convert_to_stmts(self):
+        stmts = []
+
+        for inpt in self.inputs:
+            if inpt.version == 0 and not (inpt.is_const() or inpt.is_ram()):
+                # Bad design but the order in which you generate an Expr and a Variable matters because
+                # Expr will lookup in the Variable cache as well as its own. Therefore, you most likely want
+                # to instantiate an Expr first if creating an AssignStmt.
+                extra_stmts, expr = self._generate_expr(inpt)
+                stmts.extend(extra_stmts)
+
+                var = Variable.fromvnode(inpt)
+
+                assign = AssignStmt(self.addr, var, expr)
+                stmts.append(assign)
+
+        if self.is_store():
+            dst = Expr.fromvnode(self.inputs[1])
+
+            extra_stmts, data = self._generate_expr(self.inputs[2])
+            stmts.extend(extra_stmts)
+
+            store = StoreStmt(self.addr, dst, data)
+            stmts.append(store)
+
+        return stmts
 
 
 class ABIOp(PcodeOp):
@@ -307,10 +363,6 @@ class PhiOp(PcodeOp):
         self.output = self.output.convert_to_ssa(self, assignment=True)
 
 
-def addr_to_str(addr):
-    return '%s.%02d' % (hex(int(math.floor(addr))), (addr - math.floor(addr)) * 100)
-
-
 class PcodeList(CodeElement):
     def __init__(self, addr, pcode):
         self.addr = addr
@@ -393,3 +445,11 @@ class PcodeList(CodeElement):
     def convert_to_ssa(self):
         for pcop in self.pcode:
             pcop.convert_to_ssa()
+
+    def convert_to_stmts(self):
+        stmts = []
+
+        for pcop in self.pcode:
+            stmts.extend(pcop.convert_to_stmts())
+
+        return stmts

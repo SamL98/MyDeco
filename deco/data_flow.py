@@ -11,9 +11,10 @@ class VarnodeUse(Use):
 
 
 class ExprUse(Use):
-    def __init__(self, expr, idxs):
+    def __init__(self, expr, idxs, addr=None):
         super().__init__(expr, idxs)
         self.expr = expr
+        self.addr = addr
 
 
 class DataFlowObj(object):
@@ -27,13 +28,13 @@ class DataFlowObj(object):
     def get_input_idxs(self, user):
         return [i for i, v in enumerate(user.inputs) if v == self]
 
-    def add_use(self, user, idx=None, idxs=[]):
+    def add_use(self, user, idx=None, idxs=[], **kwargs):
         if len(idxs) == 0 and idx is None:
             idxs = self.get_input_idxs(user)
         elif idx is not None:
             idxs = [idx]
 
-        use = self.use_type()(user, idxs)
+        use = self.use_type()(user, idxs, **kwargs)
         self.uses.append(use)
 
     def get_use_idx(self, user):

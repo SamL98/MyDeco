@@ -1,6 +1,6 @@
 from exprs import Expr
 from node import Node
-from pcode import addr_to_str
+from utils import addr_to_str
 
 
 class Stmt(object):
@@ -19,6 +19,16 @@ class AssignStmt(Stmt):
 
     def __repr__(self):
         return '%s = %s' % (self.var, self.expr)
+
+
+class StoreStmt(Stmt):
+    def __init__(self, addr, dst, data):
+        super().__init__(addr)
+        self.dst = dst
+        self.data = data
+
+    def __repr__(self):
+        return '*(%s) = %s' % (self.dst, self.data)
 
 
 class CallStmt(Stmt):

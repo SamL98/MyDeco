@@ -29,6 +29,9 @@ class Expr(DataFlowObj):
     def use_type(self):
         return ExprUse
 
+    def is_compound(self):
+        return False
+
     @staticmethod
     def fromvnode(vnode):
         if vnode in Expr.CACHE:
@@ -93,6 +96,12 @@ class CompoundExpr(Expr):
         self.mnemonic = mnemonic
         self.inputs = inputs
         self.opstr = MNEMONIC_TO_OPSTR.get(mnemonic, mnemonic)
+
+    def is_compound(self):
+        return True
+
+    def replace_input(self, idx, new_input):
+        self.inputs[idx] = new_input
 
     def bool_not(self):
         if self.mnemonic == 'BOOL_NEGATE':

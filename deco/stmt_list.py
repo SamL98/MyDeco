@@ -3,7 +3,7 @@ from functools import reduce
 from blocks import Block
 from exprs import Expr
 from graph import Graph
-from stmts import Stmt, AssignStmt, IfStmt
+from stmts import *
 from variable import Variable
 
 
@@ -30,25 +30,9 @@ class StmtBlockList(object):
         blk2ast = {}
 
         def preprocess_block(blk):
-            stmts = []
-
-            for pcop in blk.pcode:
-                if pcop.is_assign():
-                    var, expr = None, None
-
-                    if pcop.is_store():
-                        var = Variable.fromvnode(pcop.inputs[1])
-                        expr = Expr.fromvnode(pcop.inputs[2])
-                    else:
-                        var = Variable.fromvnode(pcop.output)
-                        expr = Expr.fromvnode(pcop.inputs[0])
-
-                    assign = AssignStmt(pcop.addr, var, expr)
-                    stmts.append(assign)
-
-                elif pcop.is_call():
-
+            stmts = sorted(blk.convert_to_stmts(), key=lambda s: s.addr)
             stmt_block = StmtBlock(stmts, addr=blk.start)
+
             ast = StmtBlockList([stmt_block])
             blk2ast[blk] = ast
 
@@ -78,8 +62,10 @@ class StmtBlockList(object):
 
                 ast.blocks.extend(ft_ast.blocks)
 
-        cfg.dfs(pre_fn=preprocess_block,
-                post_fn=postprocess_block)
+        cfg.dfs_(cfg.entry,
+                 set(),
+                 pre_fn=preprocess_block,
+                 post_fn=postprocess_block)
 
         return blk2ast[cfg.entry]
 
