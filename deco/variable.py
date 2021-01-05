@@ -2,6 +2,7 @@ from data_flow import DataFlowObj, ExprUse
 
 
 class Variable(DataFlowObj):
+    # TODO: Make Variable a subclass of Expr.
     CACHE = {}
 
     def __init__(self, value, name=None):
@@ -24,6 +25,9 @@ class Variable(DataFlowObj):
     def is_compound(self):
         return False
 
+    def constituent_vnodes(self):
+        return self.value.constituent_vnodes()
+
     @staticmethod
     def get_name():
         return 'v%d' % len(Variable.CACHE)
@@ -31,10 +35,3 @@ class Variable(DataFlowObj):
     @staticmethod
     def fromexpr(expr, name=None):
         return Variable(expr, name=name)
-
-    @staticmethod
-    def fromvnode(vnode, name=None):
-        if vnode in Variable.CACHE:
-            return Variable.CACHE[vnode]
-
-        return Variable(vnode, name=name)

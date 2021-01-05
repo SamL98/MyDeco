@@ -2,7 +2,7 @@ import pdb
 from functools import reduce
 
 from code_elem import CodeElement
-from exprs import Expr, CompoundExpr
+from exprs import *
 from stmts import *
 from varnode import Varnode, SSAVarnode
 from variable import Variable
@@ -210,32 +210,6 @@ class PcodeOp(CodeElement):
         self.inputs = inputs
         self.output = output
 
-    def _generate_expr(self, vnode):
-        stmts = []
-        expr = Expr.fromvnode(vnode)
-
-        pdb.set_trace()
-        if expr.is_compound():
-            for i, inpt in enumerate(expr.inputs):
-                # TODO: Handle multiple inputs that are the same Expr (`idxs` in add_use).
-                inpt.add_use(self, idx=i, addr=self.addr)
-                #print(inpt, inpt.is_compound(), len(inpt.uses))
-
-                if inpt.is_compound() and len(inpt.uses) >= 2:
-                    var = Variable.fromexpr(inpt)
-
-                    # Just like with copy propagation, we want to update all the uses of `expr` with `var`.
-                    for use in inpt.uses:
-                        use.expr.replace_input(use.idx, var)
-
-                    # The address for this assign should be before the *first* use of the subexpression.
-                    insert_addr = min([use.addr for use in inpt.uses]) - 1 # boo :(
-                    assign = AssignStmt(insert_addr, var, inpt)
-
-                    stmts.append(assign)
-
-        return stmts, expr
-
     def convert_to_stmts(self):
         stmts = []
 
@@ -244,22 +218,24 @@ class PcodeOp(CodeElement):
                 # Bad design but the order in which you generate an Expr and a Variable matters because
                 # Expr will lookup in the Variable cache as well as its own. Therefore, you most likely want
                 # to instantiate an Expr first if creating an AssignStmt.
-                extra_stmts, expr = self._generate_expr(inpt)
-                stmts.extend(extra_stmts)
+                expr = Expr.fromvnode(inpt)
 
-                var = Variable.fromvnode(inpt)
-
-                assign = AssignStmt(self.addr, var, expr)
-                stmts.append(assign)
+                # TODO: Cleanup.
+                if isinstance(expr, Expr) and expr not in Variable.CACHE:
+                    var = expr.break_out()
+                    assign = AssignStmt(self.addr, var, expr)
+                    stmts = [assign] + stmts
 
         if self.is_store():
+            space = Expr.fromvnode(self.inputs[0])
             dst = Expr.fromvnode(self.inputs[1])
+            data = Expr.fromvnode(self.inputs[2])
 
-            extra_stmts, data = self._generate_expr(self.inputs[2])
-            stmts.extend(extra_stmts)
-
-            store = StoreStmt(self.addr, dst, data)
-            stmts.append(store)
+            # We need to wrap the operand expressions into an expression
+            # representing the STORE because STORE has no output varnode.
+            store_expr = NaryExpr('STORE', space, dst, data)
+            store_stmt = StoreStmt(self.addr, store_expr)
+            stmts.append(store_stmt)
 
         return stmts
 
@@ -351,13 +327,18 @@ class PhiOp(PcodeOp):
                      [p for p in blk.predecessors],
                      v)
 
-    def replace_input(self, predecessor):
-        if predecessor in self.inputs:
-            idx = self.inputs.index(predecessor)
-            vnode = SSAVarnode.get_latest(self.output)
+    def replace_input(self, *args):
+        if all([isinstance(inpt, Varnode) for inpt in self.inputs]):
+            super().replace_input(*args)
+        else:
+            predecessor = args[0]
 
-            super().replace_input(idx, vnode)
-            vnode.add_use(self, idx=idx)
+            if predecessor in self.inputs:
+                idx = self.inputs.index(predecessor)
+                vnode = SSAVarnode.get_latest(self.output)
+
+                super().replace_input(idx, vnode)
+                vnode.add_use(self, idx=idx)
 
     def convert_to_ssa(self):
         self.output = self.output.convert_to_ssa(self, assignment=True)
@@ -411,10 +392,6 @@ class PcodeList(CodeElement):
         Do some basic arithmetic simplification on the pcop's then
         perform copy propagation on the result.
         """
-        changed = True
-
-        #print(addr_to_str(self.start))
-        #print(self)
         new_pcode = []
 
         for pcop in self.pcode:
@@ -427,11 +404,8 @@ class PcodeList(CodeElement):
             if pcop.is_dead():
                 pcop.relink_inputs(start_idx=0)
 
-            for use in pcop.output.uses:
-                prop_vnode = pcop.inputs[0]
-                for idx in use.idxs:
-                    use.pcop.inputs[idx] = prop_vnode
-                prop_vnode.add_use(use.pcop, idxs=use.idxs)
+            prop_vnode = pcop.inputs[0]
+            pcop.output.propagate_change_to(prop_vnode)
 
         changed = len(self.pcode) != len(new_pcode)
         self.pcode = new_pcode

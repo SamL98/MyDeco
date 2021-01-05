@@ -59,3 +59,10 @@ class DataFlowObj(object):
         if idx >= 0:
             del self.uses[idx]
 
+    def propagate_change_to(self, new_val):
+        for use in self.uses:
+            new_val.add_use(use.user, idxs=use.idxs)
+
+            for idx in use.idxs:
+                use.user.replace_input(idx, new_val)
+

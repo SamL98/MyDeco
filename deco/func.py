@@ -11,6 +11,7 @@ class Function(object):
         self.cfg.simplify()
 
         self.ast = StmtBlockList.fromcfg(self.cfg)
+        self.ast.simplify()
         print(self.ast)
 
     def __repr__(self):

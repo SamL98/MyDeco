@@ -1,3 +1,6 @@
+import pdb
+from functools import reduce
+
 from data_flow import DataFlowObj, ExprUse
 from variable import Variable
 
@@ -32,19 +35,28 @@ class Expr(DataFlowObj):
     def is_compound(self):
         return False
 
+    def constituent_vnodes(self):
+        return set()
+
+    def break_out(self):
+        # TODO: Overwrite variable if this is its last use.
+        var = Variable.fromexpr(self)
+        self.propagate_change_to(var)
+        return var
+
     @staticmethod
     def fromvnode(vnode):
         if vnode in Expr.CACHE:
             return Expr.CACHE[vnode]
-        elif vnode in Variable.CACHE:
-            expr = Variable.CACHE[vnode]
-            Expr.CACHE[vnode] = expr
-            return expr
-
-        if vnode.is_const():
+        elif vnode.is_const():
             return ConstExpr(vnode.offset)
         elif vnode.version == 0 or vnode.defn is None:
-            return VarnodeExpr(vnode)
+            vnode_expr = VarnodeExpr(vnode)
+
+            if vnode_expr in Variable.CACHE:
+                return Variable.CACHE[vnode_expr]
+
+            return vnode_expr
 
         defn = vnode.defn
         arity = defn.arity()
@@ -59,7 +71,9 @@ class Expr(DataFlowObj):
         else:
             raise ValueError('Cannot create expression for 0-arity pcode expression %s' % defn)
 
-        Expr.CACHE[vnode] = expr
+        if expr.is_compound():
+            Expr.CACHE[vnode] = expr
+
         return expr
 
 
@@ -77,31 +91,45 @@ class VarnodeExpr(Expr):
         super().__init__()
         self.vnode = vnode
 
-    def __repr__(self):
-        return str(self.vnode)
+    def __hash__(self):
+        return hash(self.vnode)
 
-
-class VariableExpr(Expr):
-    def __init__(self, var):
-        super().__init__()
-        self.var = var
+    def __eq__(self, other):
+        return self.vnode == other.vnode
 
     def __repr__(self):
         return str(self.vnode)
+
+    def constituent_vnodes(self):
+        return {self.vnode}
 
 
 class CompoundExpr(Expr):
     def __init__(self, mnemonic, *inputs):
         super().__init__()
         self.mnemonic = mnemonic
-        self.inputs = inputs
+        self.inputs = list(inputs)
         self.opstr = MNEMONIC_TO_OPSTR.get(mnemonic, mnemonic)
+
+        # TODO: Handle multiple inputs that are the same Expr (`idxs` in add_use).
+        for i, inpt in enumerate(inputs):
+            inpt.add_use(self, idx=i)
+
+        self._parse_inputs()
+
+    def _parse_inputs(self):
+        raise NotImplementedError()
 
     def is_compound(self):
         return True
 
+    def constituent_vnodes(self):
+        return reduce(lambda x,y: x.union(y),
+                      [inpt.constituent_vnodes() for inpt in self.inputs])
+
     def replace_input(self, idx, new_input):
         self.inputs[idx] = new_input
+        self._parse_inputs()
 
     def bool_not(self):
         if self.mnemonic == 'BOOL_NEGATE':
@@ -122,19 +150,20 @@ class CompoundExpr(Expr):
 
 
 class UnaryExpr(CompoundExpr):
-    def __init__(self, mnemonic, hs):
-        super().__init__(mnemonic, hs)
-        self.hs = hs
+    def _parse_inputs(self):
+        self.hs = self.inputs[0]
 
     def __repr__(self):
+        if self.mnemonic == 'COPY':
+            return str(self.hs)
+
         return '%s(%s)' % (self.opstr, self.hs)
 
 
 class BinaryExpr(CompoundExpr):
-    def __init__(self, mnemonic, lhs, rhs):
-        super().__init__(mnemonic, lhs, rhs)
-        self.lhs = lhs
-        self.rhs = rhs
+    def _parse_inputs(self):
+        self.lhs = self.inputs[0]
+        self.rhs = self.inputs[1]
 
     def __repr__(self):
         if self.mnemonic == 'LOAD':
@@ -144,9 +173,9 @@ class BinaryExpr(CompoundExpr):
 
 
 class NaryExpr(CompoundExpr):
-    def __repr__(self):
-        if self.mnemonic == 'STORE':
-            return '%s(%s) = %s' % (self.opstr, self.inputs[1], self.inputs[2])
+    def _parse_inputs(self):
+        pass
 
+    def __repr__(self):
         inputs_str = ', '.join([str(i) for i in self.inputs])
         return '%s(%s)' % (self.opstr, inputs_str)

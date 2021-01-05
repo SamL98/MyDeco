@@ -21,20 +21,27 @@ class AssignStmt(Stmt):
         return '%s = %s' % (self.var, self.expr)
 
 
-class StoreStmt(Stmt):
-    def __init__(self, addr, dst, data):
+class ExprStmt(Stmt):
+    """
+    Basically an address-tied expression.
+    An expression pulled out of the aether and into the program.
+
+    NOTE: We're assuming that the wrapped expression is a compound expression.
+    """
+    def __init__(self, addr, expr):
         super().__init__(addr)
-        self.dst = dst
-        self.data = data
+        self.expr = expr
 
     def __repr__(self):
-        return '*(%s) = %s' % (self.dst, self.data)
+        return str(self.expr)
+
+    def replace_input(self, idx, new_input):
+        self.expr.inputs[idx] = new_input
 
 
-class CallStmt(Stmt):
-    def __init__(self, addr, *params):
-        super().__init__(addr)
-        self.params = params
+class StoreStmt(ExprStmt):
+    def __repr__(self):
+        return '*(%s) = %s' % (self.expr.inputs[1], self.expr.inputs[2])
 
 
 class IfStmt(Stmt):

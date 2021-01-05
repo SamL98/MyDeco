@@ -1,6 +1,8 @@
+import pdb
 from functools import reduce
 
 from blocks import Block
+from cfg import get_block_containing
 from exprs import Expr
 from graph import Graph
 from stmts import *
@@ -14,8 +16,20 @@ class StmtBlock(Block):
         super().__init__(addr, stmts, **kwargs)
         self.stmts = stmts
 
+        # FIXME
+        if len(stmts) > 0:
+            self.end = stmts[-1].addr
+        else:
+            self.end = self.start
+
     def __repr__(self):
         return '\n'.join([str(blk) for blk in self.stmts])
+
+    def get_insert_idx(self, addr):
+        for i, stmt in self.stmts:
+            if addr <= stmt.addr:
+                return i
+        return i
 
 
 class StmtBlockList(object):
@@ -24,6 +38,26 @@ class StmtBlockList(object):
 
     def __repr__(self):
         return '\n'.join([str(blk) for blk in self.blocks])
+
+    def simplify(self):
+        for expr in Expr.CACHE.values():
+            if len(expr.uses) >= 2:
+                var = expr.break_out()
+
+                constituents = {vnode for vnode in expr.constituent_vnodes()
+                                                if vnode.defn is not None}
+
+                if len(constituents) == 0:
+                    blk = self.blocks[0]
+                    assign = AssignStmt(blk.start, var, expr)
+                    blk.stmts = [assign] + blk.stmts
+                else:
+                    insert_addr = max([vnode.defn.addr for vnode in constituents]) + 1 # poor form
+
+                    blk = get_block_containing(insert_addr, self.blocks)
+                    insert_idx = blk.get_insert_idx(insert_addr)
+
+                    blk.stmts.insert(insert_idx, assign)
 
     @staticmethod
     def fromcfg(cfg):
