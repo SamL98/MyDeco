@@ -2,7 +2,6 @@ import pdb
 from functools import reduce
 
 from blocks import Block
-from cfg import get_block_containing
 from exprs import Expr
 from graph import Graph
 from stmts import *
@@ -25,8 +24,12 @@ class StmtBlock(Block):
     def __repr__(self):
         return '\n'.join([str(blk) for blk in self.stmts])
 
+    def add_stmt(self, stmt):
+        self.stmts.append(stmt)
+        self.end = self.stmts[-1].addr
+
     def get_insert_idx(self, addr):
-        for i, stmt in self.stmts:
+        for i, stmt in enumerate(self.stmts):
             if addr <= stmt.addr:
                 return i
         return i
@@ -39,24 +42,42 @@ class StmtBlockList(object):
     def __repr__(self):
         return '\n'.join([str(blk) for blk in self.blocks])
 
+
+class MyAST(object):
+    def __init__(self, entry, asts):
+        self.entry = entry
+        self.asts = asts
+
+    def __repr__(self):
+        return str(self.entry)
+
+    def block_containing(self, addr):
+        for ast in self.asts:
+            for blk in ast.blocks:
+                if blk.start <= addr and addr < blk.end:
+                    return blk
+        pdb.set_trace()
+
+    def _percolate_assignment(self, assign):
+
     def simplify(self):
         for expr in Expr.CACHE.values():
             if len(expr.uses) >= 2:
                 var = expr.break_out()
 
-                constituents = {vnode for vnode in expr.constituent_vnodes()
-                                                if vnode.defn is not None}
+                constituents = {c for c in expr.constituents() if c.defn is not None}
 
                 if len(constituents) == 0:
-                    blk = self.blocks[0]
+                    blk = self.entry.blocks[0]
                     assign = AssignStmt(blk.start, var, expr)
                     blk.stmts = [assign] + blk.stmts
                 else:
-                    insert_addr = max([vnode.defn.addr for vnode in constituents]) + 1 # poor form
+                    insert_addr = max([c.defn.addr for c in constituents]) + 1 # poor form
 
-                    blk = get_block_containing(insert_addr, self.blocks)
+                    blk = self.block_containing(insert_addr)
                     insert_idx = blk.get_insert_idx(insert_addr)
 
+                    assign = AssignStmt(insert_addr, var, expr)
                     blk.stmts.insert(insert_idx, assign)
 
     @staticmethod
@@ -85,10 +106,10 @@ class StmtBlockList(object):
 
                 # Pop the statement block from the current AST and put it into its own AST.
                 tgt_ast = blk2ast[tgt]
-                del blk2ast[tgt]
+                #del blk2ast[tgt]
 
                 if_stmt = IfStmt(pcop.addr, condition, tgt_ast)
-                ast.blocks[0].stmts.append(if_stmt)
+                ast.blocks[0].add_stmt(if_stmt)
 
                 # Then accumulate the if's AST with the fallthrough and pop the fallthrough's AST.
                 ft_ast = blk2ast[ft]
@@ -101,5 +122,5 @@ class StmtBlockList(object):
                  pre_fn=preprocess_block,
                  post_fn=postprocess_block)
 
-        return blk2ast[cfg.entry]
+        return MyAST(blk2ast[cfg.entry], blk2ast.values())
 

@@ -25,8 +25,8 @@ class Variable(DataFlowObj):
     def is_compound(self):
         return False
 
-    def constituent_vnodes(self):
-        return self.value.constituent_vnodes()
+    def constituents(self):
+        return self.value.constituents()
 
     @staticmethod
     def get_name():

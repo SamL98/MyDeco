@@ -35,8 +35,8 @@ class Expr(DataFlowObj):
     def is_compound(self):
         return False
 
-    def constituent_vnodes(self):
-        return set()
+    def constituents(self):
+        return {self}
 
     def break_out(self):
         # TODO: Overwrite variable if this is its last use.
@@ -82,6 +82,17 @@ class ConstExpr(Expr):
         super().__init__()
         self.const = const
 
+    def __hash__(self):
+        return hash(self.const)
+
+    def __eq__(self, other):
+        if isinstance(other, int):
+            return self.const == other
+        elif isinstance(other, ConstExpr):
+            return self.const == other.const
+        else:
+            pdb.set_trace()
+
     def __repr__(self):
         return hex(self.const)
 
@@ -99,9 +110,6 @@ class VarnodeExpr(Expr):
 
     def __repr__(self):
         return str(self.vnode)
-
-    def constituent_vnodes(self):
-        return {self.vnode}
 
 
 class CompoundExpr(Expr):
@@ -123,9 +131,9 @@ class CompoundExpr(Expr):
     def is_compound(self):
         return True
 
-    def constituent_vnodes(self):
+    def constituents(self):
         return reduce(lambda x,y: x.union(y),
-                      [inpt.constituent_vnodes() for inpt in self.inputs])
+                      [inpt.constituents() for inpt in self.inputs])
 
     def replace_input(self, idx, new_input):
         self.inputs[idx] = new_input
@@ -146,6 +154,10 @@ class CompoundExpr(Expr):
     @classmethod
     def frompcop(cls, pcop):
         expr_inputs = [Expr.fromvnode(v) for v in pcop.inputs]
+
+        if pcop.is_identity():
+            return expr_inputs[0]
+
         return cls(pcop.mnemonic, *expr_inputs).simplify()
 
 
@@ -154,9 +166,6 @@ class UnaryExpr(CompoundExpr):
         self.hs = self.inputs[0]
 
     def __repr__(self):
-        if self.mnemonic == 'COPY':
-            return str(self.hs)
-
         return '%s(%s)' % (self.opstr, self.hs)
 
 

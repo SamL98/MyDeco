@@ -16,6 +16,7 @@ class AssignStmt(Stmt):
         super().__init__(addr)
         self.var = var
         self.expr = expr
+        self.expr.defn = self
 
     def __repr__(self):
         return '%s = %s' % (self.var, self.expr)
@@ -31,6 +32,7 @@ class ExprStmt(Stmt):
     def __init__(self, addr, expr):
         super().__init__(addr)
         self.expr = expr
+        self.expr.defn = self
 
     def __repr__(self):
         return str(self.expr)
@@ -48,6 +50,7 @@ class IfStmt(Stmt):
     def __init__(self, addr, condition, target):
         super().__init__(addr)
         self.condition = condition
+        self.condition.defn = self
         self.target = target
 
     def __repr__(self):

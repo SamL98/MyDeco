@@ -16,6 +16,13 @@ def get_block_containing(addr, blocks):
 
 
 def decompose_into_blocks(insns):
+    """
+    Group the instructions into basic blocks.
+
+    Do this by performing DFS on the instruction graph. In this graph,
+        there is an edge from an instruction to its fallthrough (if applicable)
+        and edges from branches to target.
+    """
     blocks = {}
 
     insn_lookup = {insn.addr: insn for insn in insns}
@@ -24,6 +31,8 @@ def decompose_into_blocks(insns):
     while len(addr_buff) > 0:
         addr, curr_block, predecessor = addr_buff.pop(-1)
 
+        # In this case, we are falling through into a previous branched-to block.
+        # Therefore, we want to convert the current buffer of instructions into a block.
         if addr in blocks:
             blk = InstructionBlock(curr_block, predecessor=predecessor)
             blocks[blk.start] = blk
@@ -33,6 +42,8 @@ def decompose_into_blocks(insns):
 
         cont_blk_start = get_block_containing(addr, blocks)
 
+        # In this case, we are branching into the middle of a sequence of instructions we
+        # previously thought made up a basic block. Therefore, we want to split said block.
         if cont_blk_start is not None:
             cont_blk = blocks[cont_blk_start]
             new_blocks = cont_blk.split(addr, predecessor)
@@ -50,12 +61,15 @@ def decompose_into_blocks(insns):
         if insn is not None:
             curr_block.append(insn)
 
+        # If the instruction returns or there is some unforseen error, create a block
+        # from the current instruction buffer.
         if insn is None or insn.terminates():
             blk = InstructionBlock(curr_block, predecessor=predecessor)
             blocks[blk.start] = blk
             curr_block = []
             predecessor = blk
 
+        # Add the successors to the current instruction to the DFS queue (buffer, whatever).
         if insn is not None:
             if insn.fallthrough() is not None:
                 addr_buff.append((insn.fallthrough(), curr_block, predecessor))

@@ -237,6 +237,25 @@ class PcodeOp(CodeElement):
             store_stmt = StoreStmt(self.addr, store_expr)
             stmts.append(store_stmt)
 
+        elif self.is_identity():
+            dst_expr = Expr.fromvnode(self.output)
+            src_expr = Expr.fromvnode(self.inputs[0])
+
+            var = dst_expr.break_out()
+            assign = AssignStmt(self.addr, var, src_expr)
+            stmts = [assign] + stmts
+
+        elif self.is_phi():
+            # In this case, map all the inputs to the same variable.
+            # For now, assume that all of the varnode expressions have been assigned to variables.
+            pdb.set_trace()
+
+            for inpt in self.inputs:
+                expr = Expr.fromvnode(inpt)
+
+                if not isinstance(expr, Variable):
+                    var = expr.break_out()
+
         return stmts
 
 
