@@ -10,13 +10,19 @@ class Stmt(object):
     def __repr__(self):
         return '%s: STMT' % addr_to_str(self.addr)
 
+    def update_expr_uses(self, expr):
+        expr.defn = self
+
+        for use in expr.uses:
+            use.addr = self.addr
+
 
 class AssignStmt(Stmt):
     def __init__(self, addr, var, expr):
         super().__init__(addr)
         self.var = var
         self.expr = expr
-        self.expr.defn = self
+        self.update_expr_uses(expr)
 
     def __repr__(self):
         return '%s = %s' % (self.var, self.expr)
@@ -32,7 +38,7 @@ class ExprStmt(Stmt):
     def __init__(self, addr, expr):
         super().__init__(addr)
         self.expr = expr
-        self.expr.defn = self
+        self.update_expr_uses(expr)
 
     def __repr__(self):
         return str(self.expr)
@@ -50,7 +56,7 @@ class IfStmt(Stmt):
     def __init__(self, addr, condition, target):
         super().__init__(addr)
         self.condition = condition
-        self.condition.defn = self
+        self.update_expr_uses(condition)
         self.target = target
 
     def __repr__(self):

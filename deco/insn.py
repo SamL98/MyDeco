@@ -33,7 +33,7 @@ class Instruction(PcodeList):
     def fallthrough(self):
         fallthru = None
 
-        if not self.returns():
+        if not (self.returns() or (self.branches() and not self.is_conditional())):
             fallthru = self.addr + self.length
 
         return fallthru

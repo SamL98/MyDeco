@@ -20,6 +20,8 @@ class PcodeOp(CodeElement):
         self.inputs = inputs
         self.output = output
 
+        self._is_assign = False
+
     def copy(self):
         return PcodeOp(self.addr, self.mnemonic, self.inputs, output=self.output)
 
@@ -52,6 +54,22 @@ class PcodeOp(CodeElement):
             pcop = RetOp.frompcop(pcop)
 
         return pcop
+
+    def tojson(self):
+        j = {
+                'id': id(self),
+                'addr': addr_to_str(self.addr),
+                'mnemonic': self.mnemonic,
+                'inputs': []
+            }
+
+        for inpt in self.inputs:
+            j['inputs'].append(inpt.tojson())
+
+        if self.has_output():
+            j['output'] = self.output.tojson()
+
+        return j
 
     @classmethod
     def fromstring(cls, s):
@@ -112,8 +130,11 @@ class PcodeOp(CodeElement):
     def is_identity(self):
         return self.mnemonic == 'COPY'
 
+    def set_is_assign(self, assign):
+        self._is_assign = assign
+
     def is_assign(self):
-        return self.is_store()# or self.is_identity()
+        return self.is_identity() or self._is_assign
 
     def target(self):
         if self.branches() and self.inputs[0].is_ram():
@@ -213,19 +234,6 @@ class PcodeOp(CodeElement):
     def convert_to_stmts(self):
         stmts = []
 
-        for inpt in self.inputs:
-            if inpt.version == 0 and not (inpt.is_const() or inpt.is_ram()):
-                # Bad design but the order in which you generate an Expr and a Variable matters because
-                # Expr will lookup in the Variable cache as well as its own. Therefore, you most likely want
-                # to instantiate an Expr first if creating an AssignStmt.
-                expr = Expr.fromvnode(inpt)
-
-                # TODO: Cleanup.
-                if isinstance(expr, Expr) and expr not in Variable.CACHE:
-                    var = expr.break_out()
-                    assign = AssignStmt(self.addr, var, expr)
-                    stmts = [assign] + stmts
-
         if self.is_store():
             space = Expr.fromvnode(self.inputs[0])
             dst = Expr.fromvnode(self.inputs[1])
@@ -235,26 +243,15 @@ class PcodeOp(CodeElement):
             # representing the STORE because STORE has no output varnode.
             store_expr = NaryExpr('STORE', space, dst, data)
             store_stmt = StoreStmt(self.addr, store_expr)
-            stmts.append(store_stmt)
+            stmts = [store_stmt]
 
-        elif self.is_identity():
+        elif self.is_assign():
             dst_expr = Expr.fromvnode(self.output)
             src_expr = Expr.fromvnode(self.inputs[0])
 
             var = dst_expr.break_out()
             assign = AssignStmt(self.addr, var, src_expr)
-            stmts = [assign] + stmts
-
-        elif self.is_phi():
-            # In this case, map all the inputs to the same variable.
-            # For now, assume that all of the varnode expressions have been assigned to variables.
-            pdb.set_trace()
-
-            for inpt in self.inputs:
-                expr = Expr.fromvnode(inpt)
-
-                if not isinstance(expr, Variable):
-                    var = expr.break_out()
+            stmts = [assign]
 
         return stmts
 
@@ -376,7 +373,7 @@ class PcodeList(CodeElement):
         return len(self.pcode)
 
     def prepend_pcode(self, new_ops):
-        self.pcode = new_ops + self.pcode
+        self.update_elems(new_ops + self.pcode)
 
     def phis(self):
         return [pcop for pcop in self.pcode if pcop.is_phi()]
@@ -416,18 +413,16 @@ class PcodeList(CodeElement):
         for pcop in self.pcode:
             pcop.simplify()
 
-            if not (pcop.can_be_propagated() or pcop.is_dead()):
-                new_pcode.append(pcop)
-                continue
-
             if pcop.is_dead():
                 pcop.relink_inputs(start_idx=0)
-
-            prop_vnode = pcop.inputs[0]
-            pcop.output.propagate_change_to(prop_vnode)
+            elif pcop.can_be_propagated():
+                prop_vnode = pcop.inputs[0]
+                pcop.output.propagate_change_to(prop_vnode)
+            else:
+                new_pcode.append(pcop)
 
         changed = len(self.pcode) != len(new_pcode)
-        self.pcode = new_pcode
+        self.update_elems(new_pcode)
 
         return changed
 
@@ -438,6 +433,34 @@ class PcodeList(CodeElement):
     def convert_to_ssa(self):
         for pcop in self.pcode:
             pcop.convert_to_ssa()
+
+    def convert_from_ssa(self):
+        """
+        For each phi-node,
+
+        1. Create a new variable.
+        2. Map the inputs and output to the new variable using Variable.CACHE.
+        3. For each input, flag its definition as an assign operation so that
+           we'll create a statement for it later.
+        """
+        new_pcode = []
+
+        for pcop in self.pcode:
+            if not pcop.is_phi():
+                new_pcode.append(pcop)
+                continue
+
+            expr = VarnodeExpr(pcop.output)
+            var = Variable.fromexpr(expr)
+
+            for inpt in pcop.inputs:
+                expr = VarnodeExpr(inpt)
+                Variable.CACHE[expr] = var
+
+                if inpt.defn is not None and not inpt.defn.is_assign():
+                    inpt.defn.set_is_assign(True)
+
+        self.update_elems(new_pcode)
 
     def convert_to_stmts(self):
         stmts = []

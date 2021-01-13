@@ -41,6 +41,14 @@ class Varnode(object):
     def fromjson(cls, j):
         return cls(j['space'], int(j['offset'], 16), int(j['size'], 16))
 
+    def tojson(self):
+        return {
+                'id': id(self),
+                'space': self.space,
+                'offset': self.offset,
+                'size': self.size
+               }
+
     @classmethod
     def fromstring(cls, s):
         space = 'const'
@@ -120,6 +128,21 @@ class SSAVarnode(Varnode, DataFlowObj):
     def use_type(self):
         return VarnodeUse
 
+    def tojson(self):
+        j = super().tojson()
+
+        j['version'] = self.version
+        j['defn']    = id(self.defn)
+        j['uses']    = []
+
+        for use in self.uses:
+            j['uses'].append({
+                'pcop': id(use.pcop),
+                'idxs': use.idxs
+            })
+
+        return j
+
     @classmethod
     def fromstring(cls, s):
         space = 'const'
@@ -146,6 +169,9 @@ class SSAVarnode(Varnode, DataFlowObj):
             return latest
 
         return cls(space, offset, size, None, version=version)
+
+    def is_func_input(self):
+        return self.version == 0 and not (self.is_const() or self.is_ram())
 
     @staticmethod
     def get_version(vnode):

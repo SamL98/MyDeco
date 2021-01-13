@@ -65,6 +65,7 @@ class Expr(DataFlowObj):
         if defn.is_call() or defn.is_phi() or arity > 2:
             expr = NaryExpr.frompcop(defn)
         elif arity == 1:
+            pdb.set_trace()
             expr = UnaryExpr.frompcop(defn)
         elif arity == 2:
             expr = BinaryExpr.frompcop(defn)

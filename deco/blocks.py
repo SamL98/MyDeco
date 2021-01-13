@@ -2,7 +2,8 @@ from functools import reduce
 import pdb
 
 from node import Node
-from pcode import PhiOp, PcodeList, addr_to_str
+from pcode import PhiOp, PcodeList
+from utils import addr_to_str
 
 
 class Block(Node):
@@ -11,8 +12,37 @@ class Block(Node):
         self.start = start
         self.elems = elems
 
+        if len(elems) > 0:
+            self.end = elems[-1].addr
+
     def __len__(self):
         return len(self.elems)
+
+    def elem_type(self):
+        raise NotImplementedError()
+
+    def update_elems(self, new_elems):
+        self.elems = new_elems
+
+    def tojson(self):
+        etype = self.elem_type()
+        j = {
+                'start': addr_to_str(self.start),
+                etype: [],
+                'successors': [],
+                'predecessors': []
+            }
+
+        for elem in self.elems:
+            j[etype].append(elem.tojson())
+
+        for succ in self.successors:
+            j['successors'].append(addr_to_str(succ.start))
+
+        for pred in self.predecessors:
+            j['predecessors'].append(addr_to_str(pred.start))
+
+        return j
 
     def fallthrough(self):
         if len(self.successors) == 0:
@@ -54,6 +84,13 @@ class InstructionBlock(Block):
         addr_str = '%s: ' % addr_to_str(self.start)
         return '\n'.join([addr_str + str(self.insns[0])] + [(' ' * len(addr_str)) + str(insn) for insn in self.insns[1:]])
 
+    def elem_type(self):
+        return 'insns'
+
+    def update_elems(self, new_insns):
+        super().update_elems(new_insns)
+        self.insns = new_insns
+
     def contains(self, addr, inclusive=True):
         is_within = addr <= self.end
 
@@ -62,14 +99,15 @@ class InstructionBlock(Block):
         else:
             return is_within and (addr > self.start)
 
-    def split(self, at_addr, predecessor=None):
+    def split(self, at_addr):
         e = 1
 
         while self.insns[e].addr != at_addr:
             e += 1
 
-        return [Block(self.insns[:e], predecessors=self.predecessors, successors=self.successors), 
-                Block(self.insns[e:], predecessor=predecessor)]
+        blk_t = type(self)
+
+        return (blk_t(self.insns[:e]), blk_t(self.insns[e:]))
 
 
 class PcodeBlock(PcodeList, Block):
@@ -77,6 +115,13 @@ class PcodeBlock(PcodeList, Block):
         start = pcode[0].addr
         PcodeList.__init__(self, start, pcode)
         Block.__init__(self, start, pcode, **kwargs)
+
+    def elem_type(self):
+        return 'pcode'
+
+    def update_elems(self, new_pcode):
+        super().update_elems(new_pcode)
+        self.pcode = new_pcode
 
     @staticmethod
     def fromiblock(iblock):

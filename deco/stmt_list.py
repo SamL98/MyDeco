@@ -51,6 +51,9 @@ class MyAST(object):
     def __repr__(self):
         return str(self.entry)
 
+    def tojson(self):
+        return {}
+
     def block_containing(self, addr):
         for ast in self.asts:
             for blk in ast.blocks:
@@ -58,30 +61,33 @@ class MyAST(object):
                     return blk
         pdb.set_trace()
 
-    def _percolate_assignment(self, assign):
+    def create_assign(self, expr):
+        constituents = {c for c in expr.constituents() if c.defn is not None}
+        var = expr.break_out()
+
+        if len(constituents) == 0:
+            blk = self.entry.blocks[0]
+            assign = AssignStmt(blk.start, var, expr)
+            blk.stmts = [assign] + blk.stmts
+        else:
+            insert_addr = max([c.defn.addr for c in constituents]) + 1 # poor form
+
+            blk = self.block_containing(insert_addr)
+            insert_idx = blk.get_insert_idx(insert_addr)
+
+            assign = AssignStmt(insert_addr, var, expr)
+            blk.stmts.insert(insert_idx, assign)
 
     def simplify(self):
         for expr in Expr.CACHE.values():
-            if len(expr.uses) >= 2:
-                var = expr.break_out()
-
-                constituents = {c for c in expr.constituents() if c.defn is not None}
-
-                if len(constituents) == 0:
-                    blk = self.entry.blocks[0]
-                    assign = AssignStmt(blk.start, var, expr)
-                    blk.stmts = [assign] + blk.stmts
-                else:
-                    insert_addr = max([c.defn.addr for c in constituents]) + 1 # poor form
-
-                    blk = self.block_containing(insert_addr)
-                    insert_idx = blk.get_insert_idx(insert_addr)
-
-                    assign = AssignStmt(insert_addr, var, expr)
-                    blk.stmts.insert(insert_idx, assign)
+            if (isinstance(expr, VarnodeExpr) and expr.vnode.is_func_input()) or \
+               len(expr.uses) >= 2:
+                self.create_assign(expr)
 
     @staticmethod
     def fromcfg(cfg):
+        cfg.convert_from_ssa()
+
         blk2ast = {}
 
         def preprocess_block(blk):

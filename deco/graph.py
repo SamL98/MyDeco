@@ -122,14 +122,17 @@ class Graph(object):
                 self.dfs_(node, visited, pre_fn=pre_fn, post_fn=post_fn)
 
     def sort_by_postorder(self):
-        self.idx_ctr = 0
+        idx_ctr = 0
 
         def set_idx(node):
-            node.set_idx(self.idx_ctr)
-            self.idx_ctr += 1
+            nonlocal idx_ctr
+            node.set_idx(idx_ctr)
+            print(hex(int(node.start)), node.idx)
+            idx_ctr += 1
 
         self.dfs(post_fn=set_idx)
         self.nodes = sorted(self.nodes, key=lambda n: n.idx)
+        print([node.idx for node in self.nodes])
         self.start = self.nodes[-1]
 
     def copy(self, copy_fn):

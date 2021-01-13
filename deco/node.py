@@ -1,14 +1,16 @@
+import pdb
+
 class Node(object):
     NUM_NODES = 0
 
     def __init__(self, predecessor=None, predecessors=None, successors=None, idx=-1, name=None):
         self.predecessors = predecessors
         if predecessors is None:
-            self.predecessors = []
+            self.predecessors = set()
 
         self.successors = successors
         if successors is None:
-            self.successors = []
+            self.successors = set()
 
         self.idx = idx
         self.name = name
@@ -34,11 +36,14 @@ class Node(object):
         self.idx = idx
 
     def add_predecessor(self, predecessor):
-        self.predecessors.append(predecessor)
+        self.predecessors.add(predecessor)
         predecessor.add_successor(self)
 
     def add_successor(self, successor):
-        self.successors.append(successor)
+        self.successors.add(successor)
+
+    def remove_successor(self, successor):
+        self.successors.discard(successor)
 
     def draw_vertex(self, g):
         g.node(self.name, self.name)

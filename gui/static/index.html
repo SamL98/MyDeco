@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="/js/graph.js"></script>
+    <title>MyDeco</title>
+</head>
+<body>
+    <svg id="cfg-container">
+    </svg>
+
+    <style>
+        #cfg-container {
+            overflow: scroll;
+        }
+
+        .basic-block-rect {
+            stroke: rgb(0,0,0);
+            stroke-width: 3;
+            fill: rgb(255,255,255);
+        }
+    </style>
+
+    <script type="text/javascript">
+        function fetchCFG(callback) {
+            var xhr = new XMLHttpRequest()
+            xhr.open('GET', 'cfg')
+            xhr.send(null)
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState !== 4 || xhr.status !== 200) {
+                    console.log('/cfg ready state: ' + xhr.readyState + ', status: ' + xhr.status)
+                    return
+                }
+
+                var func_json = JSON.parse(xhr.responseText)
+                callback(func_json.cfg)
+            }
+        }
+
+        window.onload = fetchCFG(displayCFG)
+    </script>
+</body>
+</html>
