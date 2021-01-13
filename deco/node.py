@@ -42,6 +42,9 @@ class Node(object):
     def add_successor(self, successor):
         self.successors.add(successor)
 
+    def remove_predecessor(self, predecessor):
+        self.predecessors.discard(predecessor)
+
     def remove_successor(self, successor):
         self.successors.discard(successor)
 

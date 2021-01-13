@@ -1,3 +1,4 @@
+import pdb
 from collections import defaultdict
 
 from node import Node
@@ -38,6 +39,12 @@ class Graph(object):
             changed = False
 
             for node in self.nodes[:-1][::-1]: # reverse postorder
+                # DEBUG
+                for p in node.predecessors:
+                    if p not in self.nodes:
+                        pdb.set_trace()
+                # END
+
                 processed_preds = [p for p in node.predecessors if self.idom(p) is not None]
 
                 if len(processed_preds) == 0:

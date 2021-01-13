@@ -56,14 +56,15 @@ def decompose_into_blocks(insns):
             # In addition to deleting the stale block, we need to unlink it from its predecessors.
             del blocks[cont_blk_start]
 
+            # Now we also need to transfer the old predecessors to the new first block
+            # and the old successors to the new second block. And also add an edge between
+            # the two blocks and from the branch predecessor to the second block.
             for pred in cont_blk.predecessors:
                 pred.remove_successor(cont_blk)
                 new_blk1.add_predecessor(pred)
 
-            # Now we also need to transfer the old predecessors to the new first block
-            # and the old successors to the new second block. And also add an edge between
-            # the two blocks and from the branch predecessor to the second block.
             for succ in cont_blk.successors:
+                succ.remove_predecessor(cont_blk)
                 succ.add_predecessor(new_blk2)
 
             new_blk2.add_predecessor(predecessor)
@@ -112,8 +113,6 @@ def decompose_into_blocks(insns):
 class CFG(Graph):
     def __init__(self, blocks):
         super().__init__(blocks)
-        self.draw()
-        exit()
 
         self.sort_by_postorder()
         self.generate_dom_tree()
